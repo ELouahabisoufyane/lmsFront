@@ -1,0 +1,77 @@
+<router-outlet></router-outlet>
+<div class="container mt-5" >
+  <nav class="p-2 m-2 border border-info">
+    <button class="btn btn-outline-info" (click)="handleNewEtudiant()">New Etudiant</button>
+  </nav>
+  <div class="card" >
+    <div class="card-header">Etudiants List  </div>
+    <div class="card-body">
+      <form [formGroup]="chercher" (ngSubmit)="handlechercherEtudiant()">
+        <div class="input-group">
+          <label class="input-group-text">Keyword:</label>
+          <input type="text" class="form-control" formControlName="keyword">
+          <button class="btn btn-info">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+
+      </form>
+      <table class="table">
+        <thead>
+        <tr>
+          <td>id</td>
+          <td>username</td>
+          <td>email</td>
+          <td>password</td>
+
+          <td>cne</td>
+
+        </tr>
+        </thead>
+        <tbody >
+        <tr *ngFor="let c of etudiants ">
+          <td>{{c.id}}</td>
+          <td>{{c.username}}</td>
+          <td>{{c.email}}</td>
+          <td>{{c.password}}</td>
+
+          <td>{{c.cne}}</td>
+
+          <td>
+            <button  *ngIf="au.hasRole('ADMIN')" (click)="handleDeleteEtudiant(c)" class="btn btn-danger">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+          <td>
+            <button  *ngIf="au.hasRole('ADMIN')"  (click)="handleEditEtudiant(c)" class="btn btn-success">
+              <i class="bi bi-wrench-adjustable"></i>
+            </button>
+          </td>
+        </tr>
+
+
+        </tbody>
+
+
+
+      </table>
+
+      <ul class="nav nav-pills">
+        <li>
+          <a (click)="gotoprevious()" class="btn btn-info"> Previous</a>
+        </li>
+        <li *ngFor="let p of pages ;let i=index">
+          <a (click)="gotopage(i)" [ngClass]="i==currentPage? 'btn btn-success':'btn btn-outline-success'"> {{i+1}}</a>
+
+        </li>
+        <li>
+          <a (click)="gotonext()" class="btn btn-info"> Next</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>
+

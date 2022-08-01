@@ -1,0 +1,42 @@
+<div class="container p-5 mt-5 col-md-6 offset-md-3  border border-info">
+  <form [formGroup]=" profForm" (ngSubmit)="handleUpdateclass()">
+
+    <div class="mb-3">
+      <label class="form-label"> username:</label>
+      <input type="text" formControlName="username" class="form-control">
+      <small *ngIf="profForm.controls['username'].errors && profForm.controls['username'].touched" class="text-danger">
+        {{this.cs.getErrorMessage('username',profForm.controls['username'].errors)}}
+      </small>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">email:</label>
+      <input type="email" formControlName="email" class="form-control">
+      <small *ngIf="profForm.controls['email'].errors && profForm.controls['email'].touched" class="text-danger">
+        {{this.cs.getErrorMessage('email',profForm.controls['email'].errors)}}
+      </small>
+    </div>
+    <div class="mb-3">
+      <label class="form-label"> password:</label>
+      <input type="password" formControlName="password" class="form-control">
+      <small *ngIf="profForm.controls['password'].errors && profForm.controls['password'].touched" class="text-danger">
+        {{this.cs.getErrorMessage('password',profForm.controls['password'].errors)}}
+      </small>
+    </div>
+
+
+
+    <div class="mb-3">
+      <label class="form-label"> Cnep:</label>
+      <input type="text" formControlName="cnep" class="form-control">
+      <small *ngIf="profForm.controls['cnep'].errors && profForm.controls['cnep'].touched" class="text-danger">
+        {{this.cs.getErrorMessage('cnep',profForm.controls['cnep'].errors)}}
+      </small>
+    </div>
+    <div  class="text-center">
+      <button [disabled]=" profForm.invalid" style="margin-right: 20px"  class="btn btn-success text-center "  type="submit">Save</button>
+
+      <button  class="btn btn-success text-center " (click)="annuler()" >Annuler</button>
+    </div>
+  </form>
+
+</div>

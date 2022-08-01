@@ -1,0 +1,43 @@
+<div class="container p-5 mt-5 col-md-6 offset-md-3  border border-info">
+  <div class="mb-3">
+    <label class="form-label">Chef de Filiere:</label>
+
+    <select class="form-select" [(ngModel)]="chef">
+      <option [value]="'pas'">En cours</option>
+      <option *ngFor="let c of profs "  [value]="c.username"  >{{c.username}}</option>
+
+    </select>
+  </div>
+  <form [formGroup]="filiereForm" (ngSubmit)="handleaddFiliere()">
+
+
+    <div class="mb-3">
+      <label class="form-label">Titre:</label>
+      <input type="text" formControlName="titre" class="form-control">
+      <small *ngIf="filiereForm.controls['titre'].errors && filiereForm.controls['titre'].touched" class="text-danger">
+        {{this.c.getErrorMessage('titre',filiereForm.controls['titre'].errors)}}
+      </small>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Niveau:</label>
+
+      <select class="form-select" formControlName="deplome">
+        <option [value]="'licence'">licence</option>
+        <option [value]="'master'"  >master</option>
+
+      </select>
+    </div>
+
+
+    <div class="text-center">
+      <button [disabled]="filiereForm.invalid" style="margin-right: 20px"   class="btn btn-success text-center" type="submit">Save</button>
+      <button  class="btn btn-success text-center " (click)="annuler()" >Annuler</button></div>
+  </form>
+
+
+</div>
+
+
+
+
+
