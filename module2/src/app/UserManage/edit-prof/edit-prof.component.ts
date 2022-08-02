@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Classe} from "../../model/class.modul";
+
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ClassService} from "../../services/class.service";
-import {User} from "../../model/User1";
-import {Role} from "../../model/Role";
+
+
+
 import {ProfService} from "../../services/prof.service";
 
 @Component({
@@ -15,7 +15,7 @@ import {ProfService} from "../../services/prof.service";
 export class EditProfComponent implements OnInit {
 
   profid:number;
-  prof:User;
+  prof:any;
   profForm:FormGroup;
   constructor(private ro:ActivatedRoute ,public cs:ProfService ,private fb:FormBuilder,private r:Router) {
 

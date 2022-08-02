@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { Classe, PageC } from '../model/class.modul';
+
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 
@@ -12,19 +12,19 @@ export class ClassService {
   private apiServerUrl = environment.apiBaseUrl;
   constructor(private http:HttpClient) { }
 
-  public getAllclasses(): Observable<Classe[]> {
-    return this.http.get<Classe[]>(`${this.apiServerUrl}/classe/all`);
+  public getAllclasses(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiServerUrl}/classe/all`);
   }
   public getClass(id:number):Observable<any>{
 
     return this.http.get(`${this.apiServerUrl}/classe/findbyid/${id}`);
   }
-  public addClasse(c: any): Observable<Classe> {
-    return this.http.post<Classe>(`${this.apiServerUrl}/classe/add`, c);
+  public addClasse(c: any): Observable<any> {
+    return this.http.post<any>(`${this.apiServerUrl}/classe/add`, c);
   }
 
-  public updateClasse(c: Classe): Observable<Classe> {
-    return this.http.put<Classe>(`${this.apiServerUrl}/classe/update`, c);
+  public updateClasse(c: any): Observable<any> {
+    return this.http.put<any>(`${this.apiServerUrl}/classe/update`, c);
   }
 
   public deleteClasse(id: number): Observable<void> {

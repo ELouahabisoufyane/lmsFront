@@ -28,12 +28,12 @@
                         <td>{{c.id}}</td>
                         <td>{{c.name}}</td>
                         <td>
-                            <button  *ngIf="au.hasRole('ADMIN')" (click)="handleDeleteclass(c)" class="btn btn-danger">
+                            <button   (click)="handleDeleteclass(c)" class="btn btn-danger">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </td>
                         <td>
-                            <button  *ngIf="au.hasRole('ADMIN')"  (click)="handleEditclass(c)" class="btn btn-success">
+                            <button  (click)="handleEditclass(c)" class="btn btn-success">
                                 <i class="bi bi-wrench-adjustable"></i>
                             </button>
                         </td>

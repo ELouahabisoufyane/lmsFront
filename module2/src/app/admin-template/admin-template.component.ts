@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../services/authentication.service';
+import {AuthentificationserviceService} from "../services/authentificationservice.service";
+
 
 @Component({
   selector: 'app-admin-template',
@@ -9,18 +10,11 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class AdminTemplateComponent implements OnInit {
 
-  constructor(public auths:AuthenticationService ,private route: Router,public au:AuthenticationService) { }
+  constructor(public auths:AuthentificationserviceService ,private route: Router) { }
 
   ngOnInit(): void {
   }
   handlelogout(){
-    this.auths.logout().subscribe({
-
-      next:()=>{
-        this.route.navigateByUrl("/login");
-      }
-    }
-
-    )
+    this.auths.logout();
   }
 }

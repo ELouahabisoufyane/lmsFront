@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import { Classe } from '../model/class.modul';
+
 import { ClassService } from '../services/class.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ClassService } from '../services/class.service';
 })
 export class EditClassComponent implements OnInit {
   classid:number;
-  clas!:Classe;
+  clas!:any;
   classForm!:FormGroup;
   constructor(private ro:ActivatedRoute ,public cs:ClassService ,private fb:FormBuilder,private r:Router) {
 

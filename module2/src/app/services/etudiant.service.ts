@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {User} from "../model/User1";
+
 import {Observable} from "rxjs";
+import {Student} from "../Models/student";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EtudiantService {
-  private t:String="etudiant";
+  private t:String="student";
   private apiServerUrl = environment.apiBaseUrl;
   constructor(private http:HttpClient) { }
 
@@ -50,4 +51,14 @@ export class EtudiantService {
   public getcard():Observable<any> {
     return this.http.get(this.apiServerUrl+'/etudiant/card');
   }
+  public setAccepted(etu:any):Observable<any> {
+      return this.http.put(this.apiServerUrl+"/etudiant/setAffected",etu);
+  }
+  public setRefused(etu:Student):Observable<any>{
+    return this.http.put(this.apiServerUrl+'/etudiant/setRefused',etu);
+  }
+  public setDemanded(etu:Student){
+    this.http.put(this.apiServerUrl+'/etudiant/setDemanded',etu);
+  }
+
 }

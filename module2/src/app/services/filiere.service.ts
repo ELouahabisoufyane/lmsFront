@@ -3,6 +3,8 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 
 import {Observable} from "rxjs";
+import {Filiere} from "../Models/filiere";
+import {Niveau} from "../Models/niveau";
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +17,8 @@ export class FiliereService {
 
 
 
-  public addFiliere(c: any, chef: any): Observable<any> {
-    return this.http.post<any>(`${this.apiServerUrl}/filiere/add/${chef}`, c);
+  public addFiliere(c: Filiere, chef: any): Observable<Filiere> {
+    return this.http.post<Filiere>(`${this.apiServerUrl}/filiere/add/${chef}`, c);
   }
   public updateFiliere(c: any): Observable<any> {
     return this.http.put<any>(this.apiServerUrl+"/filiere/update", c);
@@ -53,5 +55,7 @@ export class FiliereService {
 
   public addChef(filiere: any, sprof: String):Observable<any> {
     return this.http.get( `${this.apiServerUrl}/filiere/add/${sprof}` ,filiere);
+  }public getNiveaux(id:number) :Observable<Niveau[]>{
+    return this.http.get<Niveau[]>(this.apiServerUrl+"/filiere/get/"+id+"/Niveaux");
   }
 }

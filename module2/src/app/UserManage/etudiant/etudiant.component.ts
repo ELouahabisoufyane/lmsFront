@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../../model/User1";
+
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {AuthenticationService} from "../../services/authentication.service";
+
 import {ProfService} from "../../services/prof.service";
 import {Router} from "@angular/router";
 import {EtudiantService} from "../../services/etudiant.service";
@@ -15,13 +15,13 @@ export class EtudiantComponent implements OnInit {
 
   pages: Array<any>;
   currentPage: number=0;
-  etudiants: User[];
+  etudiants: Array<any>;
   pagesize:number=4;
   totalPages :number=0;
   errorMessage!:string;
   chercher:FormGroup;
   caction:string="all";
-  constructor(public  au:AuthenticationService,private us:EtudiantService,private f:FormBuilder,private ro:Router) { }
+  constructor(private us:EtudiantService,private f:FormBuilder,private ro:Router) { }
 
   ngOnInit(): void {
     this.chercher=this.f.group(
@@ -48,11 +48,11 @@ export class EtudiantComponent implements OnInit {
     )
   }
 
-  handleEditEtudiant(c: User) {
+  handleEditEtudiant(c: any) {
     this.ro.navigateByUrl("/admin/editetudiant/"+c.id);
   }
 
-  handleDeleteEtudiant(c: User) {
+  handleDeleteEtudiant(c: any) {
     let conf=confirm("etes-vous sur de vouloir supprimer");
     if(conf==false)
       return;

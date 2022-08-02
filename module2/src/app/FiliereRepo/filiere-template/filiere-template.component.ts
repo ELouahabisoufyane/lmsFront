@@ -4,6 +4,7 @@ import {FiliereService} from "../../services/filiere.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ProfService} from "../../services/prof.service";
 import {NiveauService} from "../../services/niveau.service";
+import {Niveau} from "../../Models/niveau";
 
 @Component({
   selector: 'app-filiere-template',
@@ -16,20 +17,15 @@ export class FiliereTemplateComponent implements OnInit {
   filiereForm:FormGroup;
   profs: any;
   sprof:any;
-  niveaux:any;
+  niveaux:Niveau[];
 
   public  message: string;
    newchef: boolean=false;
-  constructor(private r:Router,private ni:NiveauService,private ro:ActivatedRoute,public cs:FiliereService,private pr:ProfService ,private fb:FormBuilder) { }
+  constructor(private r:Router,private ni:NiveauService,private ro:ActivatedRoute,public cs:FiliereService,private pr:ProfService ,private fb:FormBuilder) {
+
+  }
 
   ngOnInit(): void {
-    this.ni.getNiveaux().subscribe(
-      {
-        next:(data)=>{
-          this.niveaux=data;
-        }
-      }
-    )
 
 
     this.filiereid=this.ro.snapshot.params['id'];
@@ -42,6 +38,13 @@ export class FiliereTemplateComponent implements OnInit {
 
 
 });
+    this.cs.getNiveaux(this.filiereid).subscribe(
+      {
+        next:(data)=>{
+          this.niveaux=data;
+        }
+      }
+    )
     this.pr.getProfs().subscribe(
       {
         next:(data)=>{
@@ -72,7 +75,7 @@ export class FiliereTemplateComponent implements OnInit {
 
 
 
-  gotoEtudiant(titre: any) {
-    this.r.navigateByUrl("/admin/detailn")
+  gotoEtudiant(id: any) {
+    this.r.navigateByUrl("/admin/detailn/"+id);
   }
 }

@@ -54,7 +54,7 @@ export class NewFiliereComponent implements OnInit {
           this.filiereForm.reset();
         },
         error:err=>{
-          console.log(err);
+          console.log("eeeeeeee");
         }
       }
     )

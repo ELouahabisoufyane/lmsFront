@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../../model/User1";
+
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {EtudiantService} from "../../services/etudiant.service";
@@ -13,7 +13,7 @@ import {EtudiantService} from "../../services/etudiant.service";
 export class EditEtudiantComponent implements OnInit {
 
   etudiantid:number;
-  etudiant:User;
+  etudiant:any;
   etudiantForm:FormGroup;
   constructor(private ro:ActivatedRoute ,public cs:EtudiantService ,private fb:FormBuilder,private r:Router) {
 

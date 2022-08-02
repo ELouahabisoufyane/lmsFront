@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {User} from "../model/User1";
+
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -9,15 +9,15 @@ import {Observable} from "rxjs";
 })
 export class AdminService {
 
-  private a:String="admin";
+  private a:String="Admin";
   private apiServerUrl = environment.apiBaseUrl;
   constructor(private http:HttpClient) { }
 
 
 
 
-  public addAdmin(c: User): Observable<User> {
-    return this.http.post<User>(this.apiServerUrl+"/admin/add"+this.a, c);
+  public addAdmin(c: any): Observable<any> {
+    return this.http.post(this.apiServerUrl+"/admin/add"+this.a, c);
   }
   public updateAdmin(c: any): Observable<any> {
     return this.http.put<any>(this.apiServerUrl+"/admin/update", c);

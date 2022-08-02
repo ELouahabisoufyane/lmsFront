@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Classe } from '../model/class.modul';
-import { AuthenticationService } from '../services/authentication.service';
+
 import { ClassService } from '../services/class.service';
 
 @Component({
@@ -19,7 +18,7 @@ export class ClasseComponent implements OnInit {
   errorMessage!:string;
   chercher!:FormGroup;
   caction:string="all";
-  constructor(public cs:ClassService,private f:FormBuilder,private ro:Router,public au:AuthenticationService ) { }
+  constructor(public cs:ClassService,private f:FormBuilder,private ro:Router ) { }
 
   ngOnInit(): void {
     this.chercher=this.f.group(
@@ -37,7 +36,7 @@ export class ClasseComponent implements OnInit {
             this.errorMessage=err;
           }})
     }
-  handleDeleteclass(c:Classe){
+  handleDeleteclass(c:any){
     let conf=confirm("etes-vous sur de vouloir supprimer");
     if(conf==false)
       return;
@@ -117,7 +116,7 @@ export class ClasseComponent implements OnInit {
         handleNewClass(){
           this.ro.navigateByUrl("/admin/newClass");
         }
-        handleEditclass(c:Classe){
+        handleEditclass(c:any){
           this.ro.navigateByUrl("/admin/editClass/"+c.id);
 
         }

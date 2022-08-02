@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {User} from "../Models/User";
 
-import { AuthenticationService } from '../services/authentication.service';
-import {Appuser} from "../model/User";
+import {AuthentificationserviceService} from "../services/authentificationservice.service";
+
+
 
 @Component({
   selector: 'app-login',
@@ -11,42 +13,46 @@ import {Appuser} from "../model/User";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  userFormGroup!: FormGroup;
-  errormessage:any;
-  hide=true;
-  constructor(private fb:FormBuilder,private authService:AuthenticationService ,private router: Router) { }
+  LoginGroup!: FormGroup;
+  user: User = { id: Number(null), username: "", password: "", roles: [] };
+  username: string;
+  password!: string;
+  constructor(private auth:AuthentificationserviceService,
+              private fb: FormBuilder,
+              private router: Router) {
+
+
+  }
+
 
   ngOnInit(): void {
-    this.userFormGroup=this.fb.group({
-      username :this.fb.control("admin"),
-      password:this.fb.control("admin123")
-
+    this.LoginGroup = this.fb.group({
+      username: this.fb.control(""),
+      password: this.fb.control("")
     })
+  }
 
 
-  }
-  password_show_hide(){
-    if(this.hide!=true)
-      this.hide=true;
-    else
-    this.hide=false;
-  }
-  handlelogin(){
-    let username=this.userFormGroup.value.username;
-    let password=this.userFormGroup.value.password;
-    this.authService.login(username,password).subscribe({
-      next:(appUser:Appuser)=>{
-        this.authService.authenticateUser(appUser).subscribe(
-          {
-            next:(data:boolean)=>{
-              this.router.navigateByUrl("/admin/home");
-            }
-          }
-        );
-      },
-      error:(err)=>{
-        this.errormessage=err;
+  handleLogin() {
+    console.log("----------------------satrt login--------------------------");
+    console.log(this.username);
+    // this.user=this.LoginGroup.value;
+    this.user.username = this.username;
+    this.user.password = this.password;
+    this.auth.Login(this.user).subscribe((data) => {
+        console.log(data.roles[0].role);
+        this.auth.authenticateUser(data);
+
+        if (this.auth.hasRole("Admin")) {
+          this.router.navigateByUrl("/admin");
+        } else if (this.auth.hasRole("student")) {
+          this.router.navigateByUrl("/admin");
+        } else if (this.auth.hasRole("Prof")) {
+          this.router.navigateByUrl("/admin");
+        }
+
+
       }
-    })
+    )
   }
 }

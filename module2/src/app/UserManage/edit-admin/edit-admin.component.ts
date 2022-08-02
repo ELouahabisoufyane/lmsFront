@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../../model/User1";
+
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AdminService} from "../../services/admin.service";
@@ -13,7 +13,7 @@ import {AdminService} from "../../services/admin.service";
 export class EditAdminComponent implements OnInit {
 
   adminid:number;
-  admin:User;
+  admin:any;
   adminForm:FormGroup;
   constructor(private ro:ActivatedRoute ,public cs:AdminService ,private fb:FormBuilder,private r:Router) {
 

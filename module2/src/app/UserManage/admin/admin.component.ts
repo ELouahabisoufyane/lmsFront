@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from "../../model/User1";
+
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {AuthenticationService} from "../../services/authentication.service";
+
 
 import {Router} from "@angular/router";
 import {AdminService} from "../../services/admin.service";
+import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: 'app-admin',
@@ -15,13 +15,13 @@ export class AdminComponent implements OnInit {
 
   pages: Array<any>;
   currentPage: number=0;
-  admins: User[];
+  admins: Array<any>;
   pagesize:number=4;
   totalPages :number=0;
   errorMessage!:string;
   chercher:FormGroup;
   caction:string="all";
-  constructor(public  au:AuthenticationService,private us:AdminService,private f:FormBuilder,private ro:Router) { }
+  constructor(private us:AdminService,private f:FormBuilder,private ro:Router) { }
 
   ngOnInit(): void {
     this.chercher=this.f.group(
@@ -48,11 +48,11 @@ export class AdminComponent implements OnInit {
     )
   }
 
-  handleEditAdmin(c: User) {
+  handleEditAdmin(c: any) {
     this.ro.navigateByUrl("/admin/editadmin/"+c.id);
   }
 
-  handleDeleteAdmin(c: User) {
+  handleDeleteAdmin(c: any) {
     let conf=confirm("etes-vous sur de vouloir supprimer");
     if(conf==false)
       return;

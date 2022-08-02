@@ -4,7 +4,7 @@ import { AdminTemplateComponent } from './admin-template/admin-template.componen
 import { ClasseComponent } from './classe/classe.component';
 import { EditClassComponent } from './edit-class/edit-class.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
-import { HomeComponent } from './home/home.component';
+
 import { LoginComponent } from './login/login.component';
 import { NewClassComponent } from './new-class/new-class.component';
 
@@ -25,12 +25,32 @@ import {NewFiliereComponent} from "./FiliereRepo/new-filiere/new-filiere.compone
 import {FiliereComponent} from "./FiliereRepo/filiere/filiere.component";
 import {FiliereTemplateComponent} from "./FiliereRepo/filiere-template/filiere-template.component";
 import {DetailNiveauComponent} from "./FiliereRepo/detail-niveau/detail-niveau.component";
+import {NavebarComponent} from "./home/navebar/navebar.component";
+import {AboutComponent} from "./home/about/about.component";
+import {HomeComponent} from "./home/home/home.component";
+import {InscriptionComponent} from "./home/inscription/inscription.component";
 
 const routes: Routes = [
+  {
+    path: "", redirectTo: "index", pathMatch: 'full'
+  },
+  {
+    path: "index", component: NavebarComponent, children: [
+      {
+        path: "", redirectTo: "home", pathMatch: 'full'
+      },
+      {
+        path: "home", component: HomeComponent
+      },
+      { path: "filiere", component: FiliereComponent },
+      { path: "about", component: AboutComponent },
+      {path: "inscription",component:InscriptionComponent},
+    ]
+  },
   {path: "login",component:LoginComponent},
-  {path: "",component:LoginComponent},
-  {path: "admin",component:AdminTemplateComponent,canActivate:[AuthenticationGuard],children:[
-    {path: "home",component:HomeComponent},
+
+  {path: "admin",component:AdminTemplateComponent,children:[
+
      {path: "classe",component:ClasseComponent},
      {path: "newClass",component:NewClassComponent},
      {path: "editClass/:id",component:EditClassComponent},
@@ -45,7 +65,7 @@ const routes: Routes = [
       {path: "editadmin/:id",component:EditAdminComponent},
       {path: "newadmin",component:NewAdminComponent},
       {path: "ftemplate/:id",component:FiliereTemplateComponent},
-      {path: "detailn",component:DetailNiveauComponent},
+      {path: "detailn/:id",component:DetailNiveauComponent},
       {path: "editfiliere/:id",component:EditFiliereComponent},
       {path: "newfiliere",component:NewFiliereComponent}
   ]},

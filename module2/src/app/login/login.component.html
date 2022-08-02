@@ -1,52 +1,52 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-info ">
-    <img src="../assets/images/image_login.png" style="height: 80px;width: 80px;margin: auto">
-</nav>
+<div class="container ">
+  <div class="row align-items-center">
+    <div class="col mt-5 offset-md-4">
+      <mat-card class="example-card ">
+        <mat-card-header>
+          <mat-card-title>Login/Register</mat-card-title>
+          <mat-card-subtitle>Angular tutorial</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-tab-group>
+            <mat-tab label="Login">
+              <mat-form-field class="example-full-width">
+                <mat-label>username</mat-label>
+                <input type="text" matInput placeholder="username" value=""  [(ngModel)]="username">
+                <mat-icon matSuffix>username</mat-icon>
+              </mat-form-field>
 
-<div class="container" style="padding: 110px; " >
+              <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput placeholder="Password" [(ngModel)]="password">
+                <mat-icon matSuffix>vpn_key</mat-icon>
+              </mat-form-field>
+              <button mat-button color="primary" (click)="handleLogin()">Login</button>
+            </mat-tab>
+            <mat-tab label="Register">
+              <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Email" value="" >
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
 
-      <div class="col-md-6 offset-md-3">
-      <div class="card">
-          <div class="card-header">Authentication</div>
-          <div class="card-body">
-              <form [formGroup]="userFormGroup" (ngSubmit)="handlelogin()">
-                  <div class="mb-3">
-                      <label class="form-label">Username </label>
-                      <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" ><i class="bi bi-person"></i></span>
-                          </div>
-                          <input type="text" formControlName="username" class="form-control" >
+              <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput placeholder="Password" >
+                <mat-icon matSuffix>vpn_key</mat-icon>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput placeholder="Password" >
+                <mat-icon matSuffix>vpn_key</mat-icon>
+              </mat-form-field>
+              <button mat-button color="primary" >Register</button>
+            </mat-tab>
+          </mat-tab-group>
 
-                        </div>
+        </mat-card-content>
 
-                  </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
 
-                  <div class="mb-3">
-                      <label class="form-label">Password</label>
-                      <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" ><i class="bi bi-lock"></i></span>
-                          </div>
-                          <input  [type]="hide ? 'text':'password'" formControlName="password" class="form-control "  />
-                          <div class="input-group-append">
-                            <span class="input-group-text" (click)="password_show_hide()">
-                              <i [ngClass]=" hide ? 'bi bi-eye' : 'bi bi-eye-fill'" ></i>
-
-                            </span>
-                          </div>
-                        </div>
-
-
-                  </div>
-
-
-                  <div class  class="text-danger " *ngIf="errormessage">
-                      {{errormessage}}
-                  </div>
-                  <div class="text-center">
-                      <button class="btn btn-info" type="submit"> Login </button>
-                  </div>
-              </form>
-          </div>
-      </div></div></div>
-<app-footer></app-footer>

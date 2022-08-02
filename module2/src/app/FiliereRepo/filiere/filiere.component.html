@@ -33,10 +33,10 @@
 
           <td >
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-              <button  *ngIf="au.hasRole('ADMIN')" (click)="handleDeleteFiliere(c)" class="btn btn-danger">
+              <button   (click)="handleDeleteFiliere(c)" class="btn btn-danger">
                 <i class="bi bi-trash"></i>
               </button>
-              <button  *ngIf="au.hasRole('ADMIN')"  (click)="handleEditFiliere(c)" class="btn btn-success">
+              <button   (click)="handleEditFiliere(c)" class="btn btn-success">
                 <i class="bi bi-wrench-adjustable"></i>
               </button>
             </div>

@@ -4,8 +4,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ProfService} from "../../services/prof.service";
 
-import {RoleService} from "../../services/role.service";
-import {Role} from "../../model/Role";
 
 @Component({
   selector: 'app-new-prof',

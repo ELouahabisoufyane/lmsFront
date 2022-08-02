@@ -38,12 +38,12 @@
           <td>{{c.cnep}}</td>
 
           <td>
-            <button  *ngIf="au.hasRole('ADMIN')" (click)="handleDeleteProf(c)" class="btn btn-danger">
+            <button   (click)="handleDeleteProf(c)" class="btn btn-danger">
               <i class="bi bi-trash"></i>
             </button>
           </td>
           <td>
-            <button  *ngIf="au.hasRole('ADMIN')"  (click)="handleEditProf(c)" class="btn btn-success">
+            <button    (click)="handleEditProf(c)" class="btn btn-success">
               <i class="bi bi-wrench-adjustable"></i>
             </button>
           </td>

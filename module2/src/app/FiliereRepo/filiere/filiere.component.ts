@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {AuthenticationService} from "../../services/authentication.service";
+
 
 import {Router} from "@angular/router";
 import {FiliereService} from "../../services/filiere.service";
@@ -22,7 +22,7 @@ export class FiliereComponent implements OnInit {
   errorMessage!:string;
   chercher:FormGroup;
   caction:string="all";
-  constructor(public  au:AuthenticationService,private us:FiliereService,private f:FormBuilder,private ro:Router) { }
+  constructor(private us:FiliereService,private f:FormBuilder,private ro:Router) { }
 
   ngOnInit(): void {
     this.chercher=this.f.group(

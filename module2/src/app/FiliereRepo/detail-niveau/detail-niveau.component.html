@@ -12,12 +12,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>Youcef</td>
-          <td>@</td>
-          <td>y1212</td>
-          <td><button><i class="bi bi-capslock"></i></button></td>
-          <td><button><i class="bi bi-capslock"></i></button></td>
+        <tr *ngFor="let e of etuDemandes">
+          <td>{{e.username}}</td>
+          <td>{{e.email}}</td>
+          <td>{{e.cne}}</td>
+          <td><button class="btn btn-success" (click)="setAccepted(e)">Accepter</button></td>
+          <td><button class="btn btn-danger" (click)="setRefused(e)"  >Refuser</button></td>
 
 
         </tr>
@@ -40,8 +40,18 @@
           <td>email</td>
           <td>cne</td>
 
+
         </tr>
         </thead>
+        <tbody>
+        <tr *ngFor="let e of etuAcceptes">
+          <td>{{e.username}}</td>
+          <td>{{e.email}}</td>
+          <td>{{e.cne}}</td>
+
+
+        </tr>
+        </tbody>
 
 
       </table>
@@ -60,8 +70,19 @@
           <td>email</td>
           <td>cne</td>
 
+
         </tr>
         </thead>
+        <tbody>
+        <tr *ngFor="let e of etuRefuses">
+          <td>{{e.username}}</td>
+          <td>{{e.email}}</td>
+          <td>{{e.cne}}</td>
+
+
+
+        </tr>
+        </tbody>
 
 
       </table>

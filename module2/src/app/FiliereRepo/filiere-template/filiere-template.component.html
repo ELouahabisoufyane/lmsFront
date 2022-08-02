@@ -21,9 +21,9 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let n of this.filiere.niveaux" >
+      <tr *ngFor="let n of niveaux" >
         <th>{{n.titre}} </th>
-        <th><button class="btn btn-warning" (click)="gotoEtudiant(n.titre)">Aller</button></th>
+        <th><button class="btn btn-warning" (click)="gotoEtudiant(n.id)">Aller</button></th>
       </tr>
 
       </tbody>

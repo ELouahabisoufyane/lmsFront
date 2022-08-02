@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
+
 import { LoginComponent } from './login/login.component';
 import { AdminTemplateComponent } from './admin-template/admin-template.component';
 import { ClasseComponent } from './classe/classe.component';
@@ -30,6 +30,20 @@ import { FiliereTemplateComponent } from './FiliereRepo/filiere-template/filiere
 import { DetailNiveauComponent } from './FiliereRepo/detail-niveau/detail-niveau.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from "@angular/material/tabs";
+
+import {HomeComponent} from "./home/home/home.component";
+import {AboutComponent} from "./home/about/about.component";
+import {NavebarComponent} from "./home/navebar/navebar.component";
+import {MatCardModule} from "@angular/material/card";
+
+import {MatIconModule} from "@angular/material/icon";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatInputModule} from "@angular/material/input";
+
+import {MatSelectModule} from "@angular/material/select";
+import {InscriptionComponent} from "./home/inscription/inscription.component";
 
 
 @NgModule({
@@ -60,6 +74,10 @@ import {MatTabsModule} from "@angular/material/tabs";
      EditFiliereComponent,
      FiliereTemplateComponent,
      DetailNiveauComponent,
+     AboutComponent,
+     NavebarComponent,
+    InscriptionComponent
+
 
   ],
     imports: [
@@ -70,6 +88,15 @@ import {MatTabsModule} from "@angular/material/tabs";
         FormsModule,
         BrowserAnimationsModule,
         MatTabsModule,
+        MatCardModule,
+
+        MatIconModule,
+        MatExpansionModule,
+        MatSnackBarModule,
+
+        MatStepperModule,
+        MatInputModule,
+        MatSelectModule
     ],
   providers: [],
   bootstrap: [AppComponent]

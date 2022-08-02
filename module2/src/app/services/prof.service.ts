@@ -3,8 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 
 import {Observable} from "rxjs";
-import {User} from "../model/User1";
-import {Role} from "../model/Role";
+
 
 
 @Injectable({
@@ -18,8 +17,8 @@ export class ProfService {
 
 
 
-  public addProf(c: User): Observable<any> {
-    return this.http.post<any>(`${this.apiServerUrl}/prof/add/${"prof"}`, c);
+  public addProf(c: any): Observable<any> {
+    return this.http.post<any>(`${this.apiServerUrl}/prof/add/${"Prof"}`, c);
   }
   public updateProf(c: any): Observable<any> {
     return this.http.put<any>(this.apiServerUrl+"/prof/update", c);
