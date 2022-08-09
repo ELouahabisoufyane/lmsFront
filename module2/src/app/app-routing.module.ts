@@ -29,6 +29,12 @@ import {NavebarComponent} from "./home/navebar/navebar.component";
 import {AboutComponent} from "./home/about/about.component";
 import {HomeComponent} from "./home/home/home.component";
 import {InscriptionComponent} from "./home/inscription/inscription.component";
+import {StudentComponent} from "./student/student.component";
+import {TeacherComponent} from "./teacherAdmin/teacher/teacher.component";
+import {DetailmaFiliereComponent} from "./teacherAdmin/detailma-filiere/detailma-filiere.component";
+import {HometComponent} from "./teacherAdmin/homet/homet.component";
+import {DetailPromoComponent} from "./teacherAdmin/detail-promo/detail-promo.component";
+
 
 const routes: Routes = [
   {
@@ -69,6 +75,14 @@ const routes: Routes = [
       {path: "editfiliere/:id",component:EditFiliereComponent},
       {path: "newfiliere",component:NewFiliereComponent}
   ]},
+  {path: "student",component:StudentComponent,canActivate:[AuthenticationGuard]},
+  {path: "teacher",component:TeacherComponent,children:[
+
+      {path: "detailmaFiliere/:id",component:DetailmaFiliereComponent,children:[
+          {path: "detailpromo/:id",component:DetailPromoComponent}
+        ]},
+      {path: "homet/:id",component:HometComponent}
+    ]}
 
 
 

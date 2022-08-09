@@ -16,7 +16,7 @@ export class EditFiliereComponent implements OnInit {
   filiere:any;
   filiereForm:FormGroup;
   profs: any;
-  chef: String="pas";
+  chef: any;
 
   constructor(private ro:ActivatedRoute,private pr:ProfService ,public cs:FiliereService ,private fb:FormBuilder,private r:Router) {
 

@@ -25,7 +25,7 @@ export class NewProfComponent implements OnInit {
       username :this.fb.control(null,[Validators.required]),
       email:this.fb.control(null,[Validators.required]),
       password:this.fb.control(null,[Validators.required]),
-      cnep:this.fb.control(null),
+      cni:this.fb.control(null),
 
 
 

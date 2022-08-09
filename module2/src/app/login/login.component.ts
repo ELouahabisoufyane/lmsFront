@@ -46,9 +46,9 @@ export class LoginComponent implements OnInit {
         if (this.auth.hasRole("Admin")) {
           this.router.navigateByUrl("/admin");
         } else if (this.auth.hasRole("student")) {
-          this.router.navigateByUrl("/admin");
+          this.router.navigateByUrl("/student");
         } else if (this.auth.hasRole("Prof")) {
-          this.router.navigateByUrl("/admin");
+          this.router.navigateByUrl("/teacher/homet/"+data.id);
         }
 
 

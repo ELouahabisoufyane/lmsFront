@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Filiere} from "../Models/filiere";
 import {Niveau} from "../Models/niveau";
+import {Promotion} from "../Models/Promotions";
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +56,11 @@ export class FiliereService {
 
   public addChef(filiere: any, sprof: String):Observable<any> {
     return this.http.get( `${this.apiServerUrl}/filiere/add/${sprof}` ,filiere);
-  }public getNiveaux(id:number) :Observable<Niveau[]>{
+  }
+  public getNiveaux(id:number) :Observable<Niveau[]>{
     return this.http.get<Niveau[]>(this.apiServerUrl+"/filiere/get/"+id+"/Niveaux");
+  }
+  public getAllPromo(id:number):Observable<Promotion[]>{
+    return this.http.get<Promotion[]>(this.apiServerUrl+"/filiere/Promotions/"+id);
   }
 }

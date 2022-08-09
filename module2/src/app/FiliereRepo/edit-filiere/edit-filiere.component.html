@@ -26,8 +26,8 @@
     <label class="form-label">Chef de Filiere:</label>
 
     <select class="form-select" [(ngModel)]="chef">
-      <option [value]="'pas'">pas</option>
-      <option *ngFor="let c of profs "  [value]="c.username"  >{{c.username}}</option>
+      <option [value]="-1">pas</option>
+      <option *ngFor="let c of profs "  [value]="c.id"  >{{c.username}}</option>
 
     </select>
   </div>

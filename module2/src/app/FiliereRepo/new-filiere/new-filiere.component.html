@@ -3,8 +3,8 @@
     <label class="form-label">Chef de Filiere:</label>
 
     <select class="form-select" [(ngModel)]="chef">
-      <option [value]="'pas'">En cours</option>
-      <option *ngFor="let c of profs "  [value]="c.username"  >{{c.username}}</option>
+      <option [value]="-1">En cours</option>
+      <option *ngFor="let c of profs "  [value]="c.id"  >{{c.username}}</option>
 
     </select>
   </div>
@@ -17,15 +17,6 @@
       <small *ngIf="filiereForm.controls['titre'].errors && filiereForm.controls['titre'].touched" class="text-danger">
         {{this.c.getErrorMessage('titre',filiereForm.controls['titre'].errors)}}
       </small>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Niveau:</label>
-
-      <select class="form-select" formControlName="deplome">
-        <option [value]="'licence'">licence</option>
-        <option [value]="'master'"  >master</option>
-
-      </select>
     </div>
 
 

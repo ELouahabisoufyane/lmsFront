@@ -17,7 +17,7 @@ export class AdminService {
 
 
   public addAdmin(c: any): Observable<any> {
-    return this.http.post(this.apiServerUrl+"/admin/add"+this.a, c);
+    return this.http.post(this.apiServerUrl+"/admin/add/"+this.a, c);
   }
   public updateAdmin(c: any): Observable<any> {
     return this.http.put<any>(this.apiServerUrl+"/admin/update", c);

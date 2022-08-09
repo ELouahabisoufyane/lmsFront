@@ -30,20 +30,26 @@ import { FiliereTemplateComponent } from './FiliereRepo/filiere-template/filiere
 import { DetailNiveauComponent } from './FiliereRepo/detail-niveau/detail-niveau.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from "@angular/material/tabs";
-
 import {HomeComponent} from "./home/home/home.component";
 import {AboutComponent} from "./home/about/about.component";
 import {NavebarComponent} from "./home/navebar/navebar.component";
 import {MatCardModule} from "@angular/material/card";
-
 import {MatIconModule} from "@angular/material/icon";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatInputModule} from "@angular/material/input";
-
 import {MatSelectModule} from "@angular/material/select";
 import {InscriptionComponent} from "./home/inscription/inscription.component";
+import { StudentComponent } from './student/student.component';
+import { FiliereListComponent } from './filiere-list/filiere-list.component';
+import {DetailmaFiliereComponent} from "./teacherAdmin/detailma-filiere/detailma-filiere.component";
+import {TeacherComponent} from "./teacherAdmin/teacher/teacher.component";
+import { HometComponent } from './teacherAdmin/homet/homet.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import {MatListModule} from "@angular/material/list";
+import { DetailPromoComponent } from './teacherAdmin/detail-promo/detail-promo.component';
+
 
 
 @NgModule({
@@ -76,28 +82,36 @@ import {InscriptionComponent} from "./home/inscription/inscription.component";
      DetailNiveauComponent,
      AboutComponent,
      NavebarComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    StudentComponent,
+    TeacherComponent,
+    FiliereListComponent,
+    DetailmaFiliereComponent,
+    HometComponent,
+    SidenavComponent,
+    DetailPromoComponent
 
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        MatTabsModule,
-        MatCardModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatCardModule,
 
-        MatIconModule,
-        MatExpansionModule,
-        MatSnackBarModule,
+    MatIconModule,
+    MatExpansionModule,
+    MatSnackBarModule,
 
-        MatStepperModule,
-        MatInputModule,
-        MatSelectModule
-    ],
+    MatStepperModule,
+    MatInputModule,
+    MatSelectModule,
+    MatListModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -55,4 +55,7 @@ export class ProfService {
   public getcard():Observable<any> {
     return this.http.get(this.apiServerUrl+'/prof/card');
   }
+  public getFiliere(id:number):Observable<any> {
+    return this.http.get(this.apiServerUrl+'/prof/maFiliere/'+id);
+  }
 }

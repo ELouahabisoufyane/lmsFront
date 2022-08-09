@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {FiliereService} from "../../services/filiere.service";
 import {ProfService} from "../../services/prof.service";
+import {Teacher} from "../../Models/teacher";
 
 @Component({
   selector: 'app-new-filiere',
@@ -14,7 +15,7 @@ export class NewFiliereComponent implements OnInit {
 
   filiereForm:FormGroup;
   chef: any;
-  profs: any;
+  profs: Teacher[];
 
 
   constructor(private fb:FormBuilder,public c:FiliereService,private pr:ProfService,private r:Router) { }
@@ -31,7 +32,7 @@ export class NewFiliereComponent implements OnInit {
     this.filiereForm=this.fb.group({
 
       titre :this.fb.control(null,[Validators.required]),
-      deplome:this.fb.control(null,[Validators.required]),
+
 
 
 
