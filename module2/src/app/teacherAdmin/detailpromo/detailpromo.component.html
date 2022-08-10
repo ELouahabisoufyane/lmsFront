@@ -1,0 +1,38 @@
+
+<div class="container-fluid mt-3 ">
+  <div class="card  ">
+    <div class="card-header"> Année Universitaire : {{this.promotion.anneeUniv}}</div>
+    <div class="card-body">
+
+      <mat-tab-group mat-align-tabs="center">
+        <mat-tab *ngFor="let n of niveaux" label="{{n.titre}}">
+          <div class="container mt-3" *ngFor="let s of n.semestres">
+            <div class="card">
+              <div class="card-header"><label class="text-danger">{{s.titre}} :</label></div>
+              <div class="card-body">
+                <div class="row">
+                <div *ngFor="let m of s.modules"   class="col">
+                  <div class="card " >
+                    <div class="card-header">{{m.titre}}</div>
+                    <div class="card-body">Responsable :{{m.professeur.username }}</div>
+                    <div class="card-footer"> <button class="btn btn-warning">Consulter</button></div>
+                  </div>
+                </div>
+
+              </div>
+              </div>
+            </div>
+
+          </div>
+
+
+
+
+
+        </mat-tab>
+
+      </mat-tab-group>
+
+    </div>
+  </div>
+</div>

@@ -2,8 +2,18 @@
 
   <div class="card  m-3">
     <div class="card-header text-center">Filiére de résponsabilité</div>
-    <div class="card-body"> Filiere: {{this.filiere.titre}}</div>
-    <div class="card-footer text-center"><button class="btn btn-warning" (click)="handleConsulterFiliere(this.filiere.id)">Consulter</button></div>
+    <div class="card-body">
+      <ul>
+      <li> Filiere: {{this.filiere.titre}}</li>
+      <li> Promotion :
+        <select class="mat-select" [(ngModel)]="promo" >
+        <option >--Please choose an Promotion--</option>
+        <option *ngFor="let p of promotions" [value]="p.id"   > {{p.anneeUniv}}</option>
+
+        </select>
+      </li></ul>
+    </div>
+    <div class="card-footer text-center"><button [disabled]="promo==null"  class="btn btn-warning" (click)="handleConsulterPromo(promo)">Consulter</button></div>
   </div>
   <div class="card text-center m-3">
     <div class="card-header  ">Modules Ensegnée</div>

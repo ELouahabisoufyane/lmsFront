@@ -31,9 +31,10 @@ import {HomeComponent} from "./home/home/home.component";
 import {InscriptionComponent} from "./home/inscription/inscription.component";
 import {StudentComponent} from "./student/student.component";
 import {TeacherComponent} from "./teacherAdmin/teacher/teacher.component";
-import {DetailmaFiliereComponent} from "./teacherAdmin/detailma-filiere/detailma-filiere.component";
+
 import {HometComponent} from "./teacherAdmin/homet/homet.component";
-import {DetailPromoComponent} from "./teacherAdmin/detail-promo/detail-promo.component";
+import {DetailpromoComponent} from "./teacherAdmin/detailpromo/detailpromo.component";
+
 
 
 const routes: Routes = [
@@ -77,11 +78,8 @@ const routes: Routes = [
   ]},
   {path: "student",component:StudentComponent,canActivate:[AuthenticationGuard]},
   {path: "teacher",component:TeacherComponent,children:[
-
-      {path: "detailmaFiliere/:id",component:DetailmaFiliereComponent,children:[
-          {path: "detailpromo/:id",component:DetailPromoComponent}
-        ]},
-      {path: "homet/:id",component:HometComponent}
+      {path: "homet/:id",component:HometComponent},
+      {path: "detailpromo/:id",component:DetailpromoComponent}
     ]}
 
 

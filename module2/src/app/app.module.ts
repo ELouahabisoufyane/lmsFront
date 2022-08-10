@@ -43,12 +43,12 @@ import {MatSelectModule} from "@angular/material/select";
 import {InscriptionComponent} from "./home/inscription/inscription.component";
 import { StudentComponent } from './student/student.component';
 import { FiliereListComponent } from './filiere-list/filiere-list.component';
-import {DetailmaFiliereComponent} from "./teacherAdmin/detailma-filiere/detailma-filiere.component";
+
 import {TeacherComponent} from "./teacherAdmin/teacher/teacher.component";
 import { HometComponent } from './teacherAdmin/homet/homet.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import {MatListModule} from "@angular/material/list";
-import { DetailPromoComponent } from './teacherAdmin/detail-promo/detail-promo.component';
+import { DetailpromoComponent } from './teacherAdmin/detailpromo/detailpromo.component';
 
 
 
@@ -86,10 +86,11 @@ import { DetailPromoComponent } from './teacherAdmin/detail-promo/detail-promo.c
     StudentComponent,
     TeacherComponent,
     FiliereListComponent,
-    DetailmaFiliereComponent,
+
     HometComponent,
     SidenavComponent,
-    DetailPromoComponent
+    DetailpromoComponent,
+
 
 
   ],
