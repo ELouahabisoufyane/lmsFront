@@ -3,15 +3,22 @@
   <div class="card  m-3">
     <div class="card-header text-center">Filiére de résponsabilité</div>
     <div class="card-body">
-      <ul>
-      <li> Filiere: {{this.filiere.titre}}</li>
-      <li> Promotion :
-        <select class="mat-select" [(ngModel)]="promo" >
-        <option >--Please choose an Promotion--</option>
-        <option *ngFor="let p of promotions" [value]="p.id"   > {{p.anneeUniv}}</option>
+      <div class="row align-content-between">
+        <div class="col"><label> Filiere:</label> {{this.filiere.titre}}</div>
 
-        </select>
-      </li></ul>
+        <div class="col">
+         <label> Promotion :</label>
+          <select class="mat-select" [(ngModel)]="promo" >
+            <option >--Please choose an Promotion--</option>
+            <option *ngFor="let p of promotions" [value]="p.id"   > {{p.anneeUniv}}</option>
+
+          </select>
+        </div>
+
+        <div class="col end-100"> <button class="btn btn-info " (click)="handleAddPromotion()">Ajouter Promotion</button> </div>
+
+    </div>
+
     </div>
     <div class="card-footer text-center"><button [disabled]="promo==null"  class="btn btn-warning" (click)="handleConsulterPromo(promo)">Consulter</button></div>
   </div>

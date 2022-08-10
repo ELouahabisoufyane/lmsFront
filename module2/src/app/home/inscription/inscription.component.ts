@@ -6,6 +6,7 @@ import {map, Observable} from "rxjs";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {InscriptionService} from "../../services/inscription.service";
 import {StepperOrientation} from "@angular/cdk/stepper";
+import {Diplome} from "../../Models/Diplome";
 
 @Component({
   selector: 'app-inscription',
@@ -13,7 +14,7 @@ import {StepperOrientation} from "@angular/cdk/stepper";
   styleUrls: ['./inscription.component.css']
 })
 export class InscriptionComponent implements OnInit {
-
+  Diplomes!:Diplome[];
   filieres!:Filiere[];
   student=new Student();
   firstFormGroup! :FormGroup;
@@ -40,49 +41,32 @@ export class InscriptionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.handleFilieres();
+    this.handleDiplomes();
   }
-
-
-  handleNextFiliere(s:string){
-    this.nextFilieres=this.filieres.filter((e)=>{
-      if (e.deplome==s) {
-        return e;
-      }
-      return null;
-    })
-    console.log(this.nextFilieres);
-  }
-
-  handleFilieres(){
-    this.IS.getAllFiliere().subscribe({
+  handleFilieres(idDiplome:number){
+    this.IS.getFilieres(idDiplome).subscribe({
       next:(data)=>{
         this.filieres=data;
         console.log(this.filieres);
       }
     })
   }
-
-  handleInscrireStudent(){
-
-    this.student=this.secondFormGroup.value;
-    this.IS.getNiveax(this.firstFormGroup.value["idFiliere"]).subscribe({
+  handleDiplomes(){
+    this.IS.getAllDiplome().subscribe({
       next:(data)=>{
-        let id= data.find((e)=>{
-          if (e.level==1) {
-            return e;
-          }
-          return null;
-        })?.id;
-        console.log(id);
-        console.log(this.student);
-        this.IS.addStudent(this.student,id).subscribe({
-          next:(data)=>{
-            console.log(data);
-          }
-        });
+        this.Diplomes=data;
+        console.log(this.Diplomes);
       }
     })
   }
+  handleInscrireStudent(){
+    this.student=this.secondFormGroup.value;
+    this.IS.addStudent(this.student,this.firstFormGroup.value["idFiliere"]).subscribe({
+      next:(data)=>{
+        console.log(data);
+      }
+    });
+  }
+
 
 }

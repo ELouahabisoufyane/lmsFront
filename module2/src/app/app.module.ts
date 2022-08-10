@@ -49,6 +49,8 @@ import { HometComponent } from './teacherAdmin/homet/homet.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import {MatListModule} from "@angular/material/list";
 import { DetailpromoComponent } from './teacherAdmin/detailpromo/detailpromo.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 
@@ -111,7 +113,9 @@ import { DetailpromoComponent } from './teacherAdmin/detailpromo/detailpromo.com
     MatStepperModule,
     MatInputModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

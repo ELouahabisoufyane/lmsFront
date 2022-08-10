@@ -50,4 +50,12 @@ export class HometComponent implements OnInit {
   handleConsulterPromo(promo: any) {
     this.r.navigateByUrl("/teacher/detailpromo/"+promo);
   }
+
+  handleAddPromotion() {
+    this.fs.addPromo(this.filiereid).subscribe({
+      next:(data)=>{
+        this.ngOnInit();
+      }
+    })
+  }
 }
