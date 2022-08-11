@@ -6,7 +6,7 @@ import {map, Observable} from "rxjs";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {InscriptionService} from "../../services/inscription.service";
 import {StepperOrientation} from "@angular/cdk/stepper";
-import { Diplome } from 'src/app/Models/diplome';
+import {Diplome} from "../../Models/diplome";
 
 @Component({
   selector: 'app-inscription',
@@ -14,9 +14,8 @@ import { Diplome } from 'src/app/Models/diplome';
   styleUrls: ['./inscription.component.css']
 })
 export class InscriptionComponent implements OnInit {
-
   Diplomes!:Diplome[];
-  Filieres!:Filiere[];
+  filieres!:Filiere[];
   student=new Student();
   firstFormGroup! :FormGroup;
   secondFormGroup!:FormGroup
@@ -44,16 +43,15 @@ export class InscriptionComponent implements OnInit {
   ngOnInit(): void {
     this.handleDiplomes();
   }
-
   handleFilieres(idDiplome:number){
     this.IS.getFilieres(idDiplome).subscribe({
       next:(data)=>{
-        this.Filieres=data;
-        console.log(this.Filieres);
+        this.filieres=data;
+        console.log(this.filieres);
       }
     })
   }
- handleDiplomes(){
+  handleDiplomes(){
     this.IS.getAllDiplome().subscribe({
       next:(data)=>{
         this.Diplomes=data;
@@ -61,14 +59,14 @@ export class InscriptionComponent implements OnInit {
       }
     })
   }
-
   handleInscrireStudent(){
     this.student=this.secondFormGroup.value;
-        this.IS.addStudent(this.student,this.firstFormGroup.value["idFiliere"]).subscribe({
-          next:(data)=>{
-            console.log(data);
-          }
-        });
+    this.IS.addStudent(this.student,this.firstFormGroup.value["idFiliere"]).subscribe({
+      next:(data)=>{
+        console.log(data);
+      }
+    });
   }
+
 
 }

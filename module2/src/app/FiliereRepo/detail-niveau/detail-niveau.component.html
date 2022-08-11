@@ -14,7 +14,7 @@
         <tbody>
         <tr *ngFor="let e of etuDemandes">
           <td>{{e.username}}</td>
-          <td>{{e.email}}</td>
+
           <td>{{e.cne}}</td>
           <td><button class="btn btn-success" (click)="setAccepted(e)">Accepter</button></td>
           <td><button class="btn btn-danger" (click)="setRefused(e)"  >Refuser</button></td>
@@ -46,7 +46,7 @@
         <tbody>
         <tr *ngFor="let e of etuAcceptes">
           <td>{{e.username}}</td>
-          <td>{{e.email}}</td>
+
           <td>{{e.cne}}</td>
 
 
@@ -76,7 +76,7 @@
         <tbody>
         <tr *ngFor="let e of etuRefuses">
           <td>{{e.username}}</td>
-          <td>{{e.email}}</td>
+
           <td>{{e.cne}}</td>
 
 
