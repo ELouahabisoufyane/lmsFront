@@ -6,8 +6,6 @@ import {Niveau} from "../Models/niveau";
 import {Student} from "../Models/student";
 import {Diplome} from "../Models/Diplome";
 
-
-
 @Injectable({
   providedIn: 'root'
 })

@@ -6,7 +6,7 @@ import {map, Observable} from "rxjs";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {InscriptionService} from "../../services/inscription.service";
 import {StepperOrientation} from "@angular/cdk/stepper";
-import {Diplome} from "../../Models/diplome";
+import {Diplome} from "../../Models/Diplome";
 
 @Component({
   selector: 'app-inscription',
