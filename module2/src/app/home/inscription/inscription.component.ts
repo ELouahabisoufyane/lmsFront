@@ -6,6 +6,7 @@ import {map, Observable} from "rxjs";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {InscriptionService} from "../../services/inscription.service";
 import {StepperOrientation} from "@angular/cdk/stepper";
+import { Diplome } from 'src/app/Models/diplome';
 
 @Component({
   selector: 'app-inscription',
@@ -14,11 +15,11 @@ import {StepperOrientation} from "@angular/cdk/stepper";
 })
 export class InscriptionComponent implements OnInit {
 
-  filieres!:Filiere[];
+  Diplomes!:Diplome[];
+  Filieres!:Filiere[];
   student=new Student();
   firstFormGroup! :FormGroup;
   secondFormGroup!:FormGroup
-  nextFilieres!:Filiere[];
   stepperOrientation: Observable<StepperOrientation>;
 
   constructor(private formBuilder: FormBuilder, breakpointObserver: BreakpointObserver,private IS:InscriptionService) {
@@ -27,7 +28,8 @@ export class InscriptionComponent implements OnInit {
       .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
 
     this.firstFormGroup=this.formBuilder.group({
-      idFiliere:this.formBuilder.control(null,Validators.required)
+      idFiliere:this.formBuilder.control(null,Validators.required),
+    
     })
     this.secondFormGroup=this.formBuilder.group({
       id:this.formBuilder.control(null),
@@ -40,49 +42,33 @@ export class InscriptionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.handleFilieres();
+    this.handleDiplomes();
   }
 
-
-  handleNextFiliere(s:string){
-    this.nextFilieres=this.filieres.filter((e)=>{
-      if (e.deplome==s) {
-        return e;
-      }
-      return null;
-    })
-    console.log(this.nextFilieres);
-  }
-
-  handleFilieres(){
-    this.IS.getAllFiliere().subscribe({
+  handleFilieres(idDiplome:number){
+    this.IS.getFilieres(idDiplome).subscribe({
       next:(data)=>{
-        this.filieres=data;
-        console.log(this.filieres);
+        this.Filieres=data;
+        console.log(this.Filieres);
+      }
+    })
+  }
+ handleDiplomes(){
+    this.IS.getAllDiplome().subscribe({
+      next:(data)=>{
+        this.Diplomes=data;
+        console.log(this.Diplomes);
       }
     })
   }
 
   handleInscrireStudent(){
-
     this.student=this.secondFormGroup.value;
-    this.IS.getNiveax(this.firstFormGroup.value["idFiliere"]).subscribe({
-      next:(data)=>{
-        let id= data.find((e)=>{
-          if (e.level==1) {
-            return e;
-          }
-          return null;
-        })?.id;
-        console.log(id);
-        console.log(this.student);
-        this.IS.addStudent(this.student,id).subscribe({
+        this.IS.addStudent(this.student,this.firstFormGroup.value["idFiliere"]).subscribe({
           next:(data)=>{
             console.log(data);
           }
         });
-      }
-    })
   }
 
 }

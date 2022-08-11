@@ -4,31 +4,25 @@ import {Observable} from "rxjs";
 import {Filiere} from "../Models/filiere";
 import {Niveau} from "../Models/niveau";
 import {Student} from "../Models/student";
-
+import { Diplome } from '../Models/diplome';
 @Injectable({
   providedIn: 'root'
 })
 export class InscriptionService {
-
   filiereUrl!:string;
   studentUrl!:string;
-
+  diplomeUrl!:string;
   constructor(private http:HttpClient,) {
-    this.filiereUrl="http://localhost:8080/filiere"
     this.studentUrl="http://localhost:8080/etudiant"
+     this.diplomeUrl="http://localhost:8080/diplome"
   }
-
-  getAllFiliere():Observable<Filiere[]>{
-    return this.http.get<Filiere[]>(this.filiereUrl+"/getAll");
-
+  getFilieres(idDiplome:number):Observable<Filiere[]>{
+    return this.http.get<Filiere[]>(this.diplomeUrl+"/filieres/"+idDiplome);
   }
-
-  getNiveax(id:number):Observable<Niveau[]>{
-    return this.http.get<Niveau[]>(this.filiereUrl+"/get/"+id+"/Niveaux");
+  getAllDiplome():Observable<Diplome[]>{
+      return this.http.get<Diplome[]>(this.diplomeUrl+"/getAll");
+    }
+  addStudent(s:Student,idFiliere?:number){
+    return this.http.post<Student>(this.studentUrl+"/add/"+idFiliere,s);
   }
-
-  addStudent(s:Student,id?:number){
-    return this.http.post<Student>(this.studentUrl+"/adde/"+id,s);
-  }
-
 }

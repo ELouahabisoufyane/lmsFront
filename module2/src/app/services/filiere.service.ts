@@ -63,4 +63,7 @@ export class FiliereService {
   public getAllPromo(id:number):Observable<Promotion[]>{
     return this.http.get<Promotion[]>(this.apiServerUrl+"/filiere/Promotions/"+id);
   }
+  public addPromo(id:number):Observable<Filiere>{
+    return this.http.get<Filiere>(this.apiServerUrl+"/filiere/addPromo/"+id);
+  }
 }

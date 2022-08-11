@@ -31,6 +31,13 @@ export class DetailmaFiliereComponent implements OnInit {
   }
 
   handlegotopromo() {
-
+       
+  }
+  handleAddPromotion(){
+    this.fs.addPromo(this.filiereid).subscribe({
+      next:(data)=>{
+        this.ngOnInit();
+      }
+    })
   }
 }

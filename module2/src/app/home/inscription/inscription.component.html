@@ -9,8 +9,7 @@
           <mat-form-field appearance="fill">
             <mat-label>Select Niveau</mat-label>
             <mat-select  required>
-              <mat-option  (click)='handleNextFiliere("master")'  value="master" > Master</mat-option>
-              <mat-option   (click)='handleNextFiliere("licence")'  value= "licence" > Licence</mat-option>
+              <mat-option *ngFor="let d of Diplomes" (click)='handleFilieres(d.id)' value={{d.id}}>{{d.typeDiplome}}</mat-option>
             </mat-select>
           </mat-form-field>
           <div>
@@ -23,8 +22,7 @@
           <mat-form-field appearance="fill">
             <mat-label> </mat-label>
             <mat-select formControlName="idFiliere" required>
-              <mat-option  *ngFor="let i of nextFilieres"  value={{i.id}} >{{i.titre}}</mat-option>
-
+              <mat-option  *ngFor="let i of Filieres"  value={{i.id}} >{{i.titre}}</mat-option>
             </mat-select>
           </mat-form-field>
           <div>
