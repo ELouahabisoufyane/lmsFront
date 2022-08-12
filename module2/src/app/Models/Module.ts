@@ -1,6 +1,6 @@
 import {Teacher} from "./teacher";
 
-export interface Module{
+export class Module{
     id :number;
     titre:string;
     professeur:Teacher;

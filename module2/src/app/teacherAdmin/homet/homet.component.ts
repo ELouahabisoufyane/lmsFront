@@ -18,10 +18,8 @@ export class HometComponent implements OnInit {
   promotions: Promotion[];
   promo: any;
   private filiereid: any;
-
   constructor(public auths:AuthentificationserviceService,private ro:ActivatedRoute,public prof:ProfService
     ,private r:Router,private fs :FiliereService) { }
-
   ngOnInit(): void {
     this.profid=this.ro.snapshot.params['id'];
     this.prof.getFiliere(this.profid).subscribe(
@@ -32,25 +30,16 @@ export class HometComponent implements OnInit {
           this.fs.getAllPromo(this.filiereid).subscribe({
             next:(data)=>{
               this.promotions=data;
-
-
             }
           });
         }
 
       }
     );
-
   }
-
-
-
-
-
   handleConsulterPromo(promo: any) {
     this.r.navigateByUrl("/teacher/detailpromo/"+promo);
   }
-
   handleAddPromotion() {
     this.fs.addPromo(this.filiereid).subscribe({
       next:(data)=>{

@@ -8,6 +8,9 @@ import {SemestreService} from "../../services/semestre.service";
 import {Student} from "../../Models/student";
 import {SelectionModel} from "@angular/cdk/collections";
 import {MatTableDataSource} from "@angular/material/table";
+import {Teacher} from "../../Models/teacher";
+import {ProfService} from "../../services/prof.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 
 
@@ -25,8 +28,6 @@ class Student1 {
   templateUrl: './detailpromo.component.html',
   styleUrls: ['./detailpromo.component.css']
 })
-
-
 export class DetailpromoComponent implements OnInit {
   public promoid: number;
   public promotion:Promotion;
@@ -34,15 +35,20 @@ export class DetailpromoComponent implements OnInit {
   modules! :Array<Module>;
   public etudiants:Student[];
   public studentsSelected:Student[];
-
   dataSource:MatTableDataSource<Student>;
+  profs: Teacher[];
+  chef: number;
+  idSemestre: number;
+  module=new Module();
+  ModuleForm: FormGroup;
   public selection = new SelectionModel<Student>(true, []);
   displayedColumns: string[] = ['select','id','username','password','selected','cne'];
-
-
-
-  constructor(private ro:ActivatedRoute,private ps:PromotionService,private ss:SemestreService) { }
-
+  constructor(private ro:ActivatedRoute,private ps:PromotionService,private ss:SemestreService,private profS:ProfService,private fb:FormBuilder) {
+    this.ModuleForm=this.fb.group({
+      id:this.fb.control(null),
+      titre:this.fb.control(null),
+    })
+  }
   ngOnInit(): void {
     this.promoid=this.ro.snapshot.params['id'];
     this.ps.getPromo(this.promoid).subscribe({
@@ -53,6 +59,10 @@ export class DetailpromoComponent implements OnInit {
     this.ps.getNiveaux(this.promoid).subscribe({
       next:(data)=>{
         this.niveaux=data;
+        console.log(this.niveaux);
+        this.niveaux.sort((a,b)=>a.level>b.level?1:-1);
+        console.log(this.niveaux);
+        this.niveaux.forEach((a)=>{a.semestres.sort((a,b)=>a.indece>b.indece?1:-1)});
       }
     });
     this.ps.getAllStudnets(this.promoid).subscribe({
@@ -63,36 +73,29 @@ export class DetailpromoComponent implements OnInit {
 
       }
     })
-
+    this.profS.getProfs().subscribe({
+      next:(data)=>{
+        this.profs=data;
+      }
+    })
   }
   /*handleGetpagemodules(){
     this.ss.getpageModules(this.,this.currentPage).subscribe(
       data=>{
-
         this.modules=data['content'];
-
         this.pages=new Array(data['totalPages']);
         this.totalPages=data['totalPages'];
       }
-
-
-
     )
   }*/
 
 
-
   handleInscrire() {
-
-
-
     this.ps.addInscription(this.selection.selected,this.promoid).subscribe(
       {
       next:(data)=>{
           alert("insecription addes succefully");
           this.ngOnInit();
-
-
       }
       }
     )
@@ -120,5 +123,24 @@ export class DetailpromoComponent implements OnInit {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  }
+
+  handleRetirer(id: number) {
+    this.ss.retirerModule(id).subscribe({
+      next:(data)=>{
+        this.ngOnInit()
+      }
+    })
+  }
+  passSemestre(id:number){
+    this.idSemestre=id;
+  }
+  handleaddFiliere() {
+    this.module=this.ModuleForm.value;
+    this.ss.addModule(this.idSemestre,this.module,this.chef).subscribe({
+      next:(data)=>{
+        this.ngOnInit();
+      }
+    })
   }
 }
