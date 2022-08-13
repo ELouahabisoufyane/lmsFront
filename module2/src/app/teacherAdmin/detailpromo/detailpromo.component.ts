@@ -41,15 +41,23 @@ export class DetailpromoComponent implements OnInit {
   idSemestre: number;
   module=new Module();
   ModuleForm: FormGroup;
+  editForm: FormGroup;
+
   public selection = new SelectionModel<Student>(true, []);
   displayedColumns: string[] = ['select','id','username','password','selected','cne'];
+  moduleid: number;
   constructor(private ro:ActivatedRoute,private ps:PromotionService,private ss:SemestreService,private profS:ProfService,private fb:FormBuilder) {
     this.ModuleForm=this.fb.group({
       id:this.fb.control(null),
       titre:this.fb.control(null),
-    })
+    });
+
   }
   ngOnInit(): void {
+    this.editForm=this.fb.group({
+      id:this.fb.control(this.module.id),
+      titre:this.fb.control(this.module.titre),
+    });
     this.promoid=this.ro.snapshot.params['id'];
     this.ps.getPromo(this.promoid).subscribe({
       next:(data)=>{
@@ -88,6 +96,7 @@ export class DetailpromoComponent implements OnInit {
       }
     )
   }*/
+
 
 
   handleInscrire() {
@@ -136,11 +145,30 @@ export class DetailpromoComponent implements OnInit {
     this.idSemestre=id;
   }
   handleaddFiliere() {
-    this.module=this.ModuleForm.value;
-    this.ss.addModule(this.idSemestre,this.module,this.chef).subscribe({
+
+    let mm=this.ModuleForm.value;
+
+    this.ss.addModule(this.idSemestre,mm,this.chef).subscribe({
       next:(data)=>{
+        this.ngOnInit();
+        this.ModuleForm.reset();
+      }
+    })
+  }
+
+  handleeditModule() {
+    let em=this.editForm.value;
+    this.ss.addModule(this.idSemestre,em,this.chef).subscribe({
+      next:(data)=>{
+        alert("Module edit successfully")
         this.ngOnInit();
       }
     })
+  }
+
+  passModule(m: Module,id:number) {
+    this.passSemestre(id);
+    this.module=m;
+    this.ngOnInit();
   }
 }

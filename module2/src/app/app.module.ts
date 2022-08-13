@@ -41,7 +41,7 @@ import {MatStepperModule} from "@angular/material/stepper";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {InscriptionComponent} from "./home/inscription/inscription.component";
-import { StudentComponent } from './student/student.component';
+
 import { FiliereListComponent } from './filiere-list/filiere-list.component';
 
 import {TeacherComponent} from "./teacherAdmin/teacher/teacher.component";
@@ -51,6 +51,8 @@ import {MatListModule} from "@angular/material/list";
 import { DetailpromoComponent } from './teacherAdmin/detailpromo/detailpromo.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { NavbarComponent } from './studentTemplate/navbar/navbar.component';
+import { ModulesInscrisComponent } from './studentTemplate/modules-inscris/modules-inscris.component';
 
 
 
@@ -85,13 +87,15 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
      AboutComponent,
      NavebarComponent,
     InscriptionComponent,
-    StudentComponent,
+
     TeacherComponent,
     FiliereListComponent,
 
     HometComponent,
     SidenavComponent,
     DetailpromoComponent,
+    NavbarComponent,
+    ModulesInscrisComponent,
 
 
 
