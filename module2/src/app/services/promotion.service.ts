@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {Niveau} from "../Models/niveau";
 import {Promotion} from "../Models/Promotions";
 import {Student} from "../Models/student";
+import {Filiere} from "../Models/filiere";
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,10 @@ export class PromotionService {
 
   updateEtat(selected: Student[], promoid: number) {
     return this.http.put<boolean>(this.apiServerUrl+'/Promotion/updateEtat/'+promoid,selected);
+  }
+
+  public  getFiliere(promoid:number):Observable<Filiere> {
+    return this.http.get<Filiere>(this.apiServerUrl+'/Promotion/filiere/'+promoid);
+
   }
 }

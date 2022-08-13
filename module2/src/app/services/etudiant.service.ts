@@ -4,6 +4,8 @@ import {HttpClient} from "@angular/common/http";
 
 import {Observable} from "rxjs";
 import {Student} from "../Models/student";
+import {Module} from "../Models/Module";
+import {Promotion} from "../Models/Promotions";
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +61,9 @@ export class EtudiantService {
   }
   public setDemanded(etu:Student){
     this.http.put(this.apiServerUrl+'/etudiant/setDemanded',etu);
+  }
+  public getPromotion(id:number):Observable<Promotion>{
+    return this.http.get<Promotion>(this.apiServerUrl+'/etudiant/promotion/'+id);
   }
 
 }

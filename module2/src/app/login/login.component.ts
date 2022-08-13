@@ -14,7 +14,7 @@ import {AuthentificationserviceService} from "../services/authentificationservic
 })
 export class LoginComponent implements OnInit {
   LoginGroup!: FormGroup;
-  user: User = { id: Number(null), username: "", password: "", roles: [] };
+  user: User = { id: Number(null), username: "", password: "", roles: [],selec:null };
   username: string;
   password!: string;
   constructor(private auth:AuthentificationserviceService,
