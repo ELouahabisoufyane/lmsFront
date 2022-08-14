@@ -19,10 +19,9 @@ export class AuthentificationserviceService {
 
   }
   Login(user:User):Observable<any>{
+
     return this.http.post<User>(this.baseUrl+"/login",user);
-    // if(user.username=="youssef"&& user.password=="123")
-    //      return of(user);
-    //return of(NotFoundError);
+
   }
 
   authenticateUser(user:User){

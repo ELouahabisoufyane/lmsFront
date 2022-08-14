@@ -1,0 +1,57 @@
+<div *ngIf="auths.authenticatedUser.selec==false">Vous étes incrit dans aucun Module</div>
+<div class="container mt-3" *ngIf="auths.authenticatedUser.selec">
+
+<div class="card">
+  <div class="card-header a">Mes infos personel:</div>
+  <div class="card-body">
+    <ul class="list-group">
+      <li  class="list-group-item"> <label class="text-xl-start">Username:<span class="text-danger font-weight-bold"> {{this.etudiant.username}}</span></label></li>
+      <li class="list-group-item"><label>Année Universitaire:<span class="text-danger font-weight-bold">{{this.promotion.anneeUniv}}</span></label></li>
+      <li class="list-group-item"><label>inscrit en <span class="text-danger font-weight-bold"> {{this.filiere.diplome.typeDiplome}}  {{this.filiere.titre}}</span></label> </li>
+    </ul>
+  </div>
+</div>
+
+  <div class="card mt-3">
+    <div class="card-header a">Modules inscrit</div>
+    <div class="card-body">
+      <div class="container">
+        <mat-tab-group mat-align-tabs="center">
+          <mat-tab *ngFor="let n of niveaux" label="{{n.titre}}">
+            <div class="container mt-3" *ngFor="let s of n.semestres">
+              <div class="card">
+                <div class="card-header">
+                  <div class="row justify-content-between">
+                    <div class="col"> <label class="text-danger">{{s.titre}} :</label> </div>
+
+
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div *ngFor="let m of s.modules"   class="col-md-4">
+                      <div class="card mb-4" >
+                        <div class="card-header">{{m.titre}}</div>
+                        <div *ngIf="m.professeur" class="card-body">Responsable :{{m.professeur.username }}</div>
+                        <div *ngIf="!m.professeur" class="card-body">Responsable :pas d'enseignant</div>
+                        <div class="card-footer">
+                          <button class="btn btn-warning"><i class="bi bi-box-arrow-in-up-right "></i></button>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
