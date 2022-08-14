@@ -1,5 +1,10 @@
 <div *ngIf="auths.authenticatedUser.selec==false">Vous étes incrit dans aucun Module</div>
-<div class="container mt-3" *ngIf="auths.authenticatedUser.selec">
+<div class="container mt-3 scroll" *ngIf="auths.authenticatedUser.selec">
+  <div class="to-top"  [ngClass]="{ 'show-scrollTop': windowScrolled }">
+
+    <button class="btn btn-danger rounded-circle" (click)="scrollToTop()"> <i class="bi bi-arrow-up-circle-fill"></i></button>
+
+  </div>
 
 <div class="card">
   <div class="card-header a">Mes infos personel:</div>
@@ -27,6 +32,7 @@
 
                   </div>
                 </div>
+
                 <div class="card-body">
                   <div class="row">
                     <div *ngFor="let m of s.modules"   class="col-md-4">
@@ -55,3 +61,4 @@
     </div>
   </div>
 </div>
+
