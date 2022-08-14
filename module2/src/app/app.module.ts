@@ -5,34 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
-import { LoginComponent } from './login/login.component';
-import { AdminTemplateComponent } from './admin-template/admin-template.component';
-import { ClasseComponent } from './classe/classe.component';
-import { NewClassComponent } from './new-class/new-class.component';
-import { EditClassComponent } from './edit-class/edit-class.component';
-import { FooterComponent } from './footer/footer.component';
-
-import { ProfesseurComponent } from './UserManage/professeur/professeur.component';
-import { EtudiantComponent } from './UserManage/etudiant/etudiant.component';
-import { AdminComponent } from './UserManage/admin/admin.component';
-
-import { NewProfComponent } from './UserManage/new-prof/new-prof.component';
-import { UserComponent } from './UserManage/user/user.component';
-import { EditProfComponent } from './UserManage/edit-prof/edit-prof.component';
-import { NewEtudiantComponent } from './UserManage/new-etudiant/new-etudiant.component';
-import { EditEtudiantComponent } from './UserManage/edit-etudiant/edit-etudiant.component';
-import { NewAdminComponent } from './UserManage/new-admin/new-admin.component';
-import { EditAdminComponent } from './UserManage/edit-admin/edit-admin.component';
-import { FiliereComponent } from './FiliereRepo/filiere/filiere.component';
-import { NewFiliereComponent } from './FiliereRepo/new-filiere/new-filiere.component';
-import { EditFiliereComponent } from './FiliereRepo/edit-filiere/edit-filiere.component';
-import { FiliereTemplateComponent } from './FiliereRepo/filiere-template/filiere-template.component';
-import { DetailNiveauComponent } from './FiliereRepo/detail-niveau/detail-niveau.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from "@angular/material/tabs";
-import {HomeComponent} from "./home/home/home.component";
-import {AboutComponent} from "./home/about/about.component";
-import {NavebarComponent} from "./home/navebar/navebar.component";
+
 import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
@@ -40,19 +15,44 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
-import {InscriptionComponent} from "./home/inscription/inscription.component";
 
-import { FiliereListComponent } from './filiere-list/filiere-list.component';
-
-import {TeacherComponent} from "./teacherAdmin/teacher/teacher.component";
-import { HometComponent } from './teacherAdmin/homet/homet.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
 import {MatListModule} from "@angular/material/list";
-import { DetailpromoComponent } from './teacherAdmin/detailpromo/detailpromo.component';
+
 import {MatTableModule} from "@angular/material/table";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import { NavbarComponent } from './studentTemplate/navbar/navbar.component';
-import { ModulesInscrisComponent } from './studentTemplate/modules-inscris/modules-inscris.component';
+import {ModulesInscrisComponent} from "./Components/etudiant/studentTemplate/modules-inscris/modules-inscris.component";
+import {NavbarComponent} from "./Components/etudiant/studentTemplate/navbar/navbar.component";
+import {DetailpromoComponent} from "./Components/enseignant/teacherAdmin/detailpromo/detailpromo.component";
+import {SidenavComponent} from "./Components/sidenav/sidenav.component";
+import {HometComponent} from "./Components/enseignant/teacherAdmin/homet/homet.component";
+import {FiliereListComponent} from "./Components/admin/filiere-list/filiere-list.component";
+import {TeacherComponent} from "./Components/enseignant/teacherAdmin/teacher/teacher.component";
+import {InscriptionComponent} from "./Components/admin/home/inscription/inscription.component";
+import {NavebarComponent} from "./Components/admin/home/navebar/navebar.component";
+import {AboutComponent} from "./Components/admin/home/about/about.component";
+import {DetailNiveauComponent} from "./Components/admin/FiliereRepo/detail-niveau/detail-niveau.component";
+import {FiliereTemplateComponent} from "./Components/admin/FiliereRepo/filiere-template/filiere-template.component";
+import {EditFiliereComponent} from "./Components/admin/FiliereRepo/edit-filiere/edit-filiere.component";
+import {NewFiliereComponent} from "./Components/admin/FiliereRepo/new-filiere/new-filiere.component";
+import {FiliereComponent} from "./Components/admin/FiliereRepo/filiere/filiere.component";
+import {EditAdminComponent} from "./Components/admin/UserManage/edit-admin/edit-admin.component";
+import {NewAdminComponent} from "./Components/admin/UserManage/new-admin/new-admin.component";
+import {EditEtudiantComponent} from "./Components/admin/UserManage/edit-etudiant/edit-etudiant.component";
+import {NewEtudiantComponent} from "./Components/admin/UserManage/new-etudiant/new-etudiant.component";
+import {EditProfComponent} from "./Components/admin/UserManage/edit-prof/edit-prof.component";
+import {UserComponent} from "./Components/admin/UserManage/user/user.component";
+import {NewProfComponent} from "./Components/admin/UserManage/new-prof/new-prof.component";
+import {AdminComponent} from "./Components/admin/UserManage/admin/admin.component";
+import {EtudiantComponent} from "./Components/admin/UserManage/etudiant/etudiant.component";
+import {ProfesseurComponent} from "./Components/admin/UserManage/professeur/professeur.component";
+import {EditClassComponent} from "./Components/admin/ClassManger/edit-class/edit-class.component";
+import {ClasseComponent} from "./Components/admin/ClassManger/classe/classe.component";
+import {AdminTemplateComponent} from "./Components/admin/admin-template/admin-template.component";
+import {NewClassComponent} from "./Components/admin/ClassManger/new-class/new-class.component";
+import {FooterComponent} from "./Components/admin/footer/footer.component";
+import {LoginComponent} from "./Components/login/login.component";
+import {HomeComponent} from "./Components/admin/home/home/home.component";
+
 
 
 
