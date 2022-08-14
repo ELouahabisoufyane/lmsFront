@@ -18,8 +18,8 @@ export class FiliereService {
 
 
 
-  public addFiliere(c: Filiere, chef: any): Observable<Filiere> {
-    return this.http.post<Filiere>(`${this.apiServerUrl}/filiere/add/${chef}`, c);
+  public addFiliere(c: Filiere, chef: number ,idDiplome:number): Observable<Filiere> {
+    return this.http.post<Filiere>(`${this.apiServerUrl}/filiere/add/${chef}/${idDiplome}`, c);
   }
   public updateFiliere(c: any): Observable<any> {
     return this.http.put<any>(this.apiServerUrl+"/filiere/update", c);

@@ -7,6 +7,9 @@
       <option *ngFor="let c of profs "  [value]="c.id"  >{{c.username}}</option>
 
     </select>
+    <select class="form-select" [(ngModel)]="idDiplome">
+      <option *ngFor="let c of diplomes "  [value]="c.id"  >{{c.typeDiplome}}</option>
+    </select>
   </div>
   <form [formGroup]="filiereForm" (ngSubmit)="handleaddFiliere()">
 

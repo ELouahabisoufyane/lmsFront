@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 import {Teacher} from "../../../../Models/teacher";
 import {FiliereService} from "../../../../services/filiere.service";
 import {ProfService} from "../../../../services/prof.service";
+import {DiplomeService} from "../../../../services/diplome.service";
+import {Diplome} from "../../../../Models/Diplome";
 
 
 @Component({
@@ -17,9 +19,10 @@ export class NewFiliereComponent implements OnInit {
   filiereForm:FormGroup;
   chef: any;
   profs: Teacher[];
+  diplomes:Diplome[];
+  idDiplome: number;
 
-
-  constructor(private fb:FormBuilder,public c:FiliereService,private pr:ProfService,private r:Router) { }
+  constructor(private fb:FormBuilder,public c:FiliereService,private pr:ProfService,private DS:DiplomeService,private r:Router) { }
 
   ngOnInit(): void {
     this.pr.getProfs().subscribe(
@@ -31,16 +34,15 @@ export class NewFiliereComponent implements OnInit {
     )
 
     this.filiereForm=this.fb.group({
-
       titre :this.fb.control(null,[Validators.required]),
+    });
+  this.DS.getAll().subscribe({
+    next:(data)=>{
+      this.diplomes=data;
+    }
+  })
 
-
-
-
-
-
-
-    });}
+  }
 
 
 
@@ -49,7 +51,7 @@ export class NewFiliereComponent implements OnInit {
   handleaddFiliere(){
     let cl=this.filiereForm.value;
 
-    this.c.addFiliere(cl,this.chef).subscribe(
+    this.c.addFiliere(cl,this.chef,this.idDiplome).subscribe(
       {
         next:(data)=>{
           alert("Filiere added succesfully");

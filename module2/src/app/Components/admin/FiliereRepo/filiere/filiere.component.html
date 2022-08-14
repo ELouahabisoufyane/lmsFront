@@ -22,6 +22,7 @@
           <td>id</td>
           <td>titre</td>
           <td>Chef de Filiere</td>
+          <td>Type Diplome</td>
         </tr>
         </thead>
         <tbody >
@@ -30,7 +31,8 @@
           <td >{{c.titre}}</td>
           <td *ngIf="c.chefFiliere">{{c.chefFiliere.username}} </td>
           <td *ngIf="c.chefFiliere ==null">pas de chef </td>
-
+          <td *ngIf="c.diplome">{{c.diplome.typeDiplome}}</td>
+          <td *ngIf="c.diplome==null">null</td>
           <td >
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
               <button   (click)="handleDeleteFiliere(c)" class="btn btn-danger">
@@ -45,21 +47,14 @@
             <button type="button" class="btn btn-warning" (click)="handleConsulter(c)">Consulter</button>
           </td>
         </tr>
-
-
         </tbody>
-
-
-
       </table>
-
       <ul class="nav nav-pills">
         <li>
           <a (click)="gotoprevious()" class="btn btn-info"> Previous</a>
         </li>
         <li *ngFor="let p of pages ;let i=index">
           <a (click)="gotopage(i)" [ngClass]="i==currentPage? 'btn btn-success':'btn btn-outline-success'"> {{i+1}}</a>
-
         </li>
         <li>
           <a (click)="gotonext()" class="btn btn-info"> Next</a>

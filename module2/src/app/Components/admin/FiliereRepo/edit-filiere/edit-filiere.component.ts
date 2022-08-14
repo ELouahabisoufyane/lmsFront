@@ -4,6 +4,8 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProfService} from "../../../../services/prof.service";
 import {FiliereService} from "../../../../services/filiere.service";
+import {Diplome} from "../../../../Models/Diplome";
+import {DiplomeService} from "../../../../services/diplome.service";
 
 
 
@@ -18,26 +20,20 @@ export class EditFiliereComponent implements OnInit {
   filiereForm:FormGroup;
   profs: any;
   chef: any;
-
-  constructor(private ro:ActivatedRoute,private pr:ProfService ,public cs:FiliereService ,private fb:FormBuilder,private r:Router) {
-
+  idDiplome: number;
+  diplomes:Diplome[];
+  constructor(private ro:ActivatedRoute,private pr:ProfService ,private DS:DiplomeService,public cs:FiliereService ,private fb:FormBuilder,private r:Router) {
   }
 
   ngOnInit(): void {
-
     this.filiereid=this.ro.snapshot.params['id'];
     this.cs.getFiliere(this.filiereid).subscribe(
       {
         next:(data)=>{
-
           this. filiere=data;
           this. filiereForm=this.fb.group({
-
             id:this.fb.control(this.filiere.id),
             titre :this.fb.control(this.filiere.titre),
-
-
-
           });
         },
         error:err=>{
@@ -52,10 +48,16 @@ export class EditFiliereComponent implements OnInit {
         }
       }
     );
+
+    this.DS.getAll().subscribe({
+      next:(data)=>{
+        this.diplomes=data;
+      }
+    })
   }
   handleUpdateFiliere(){
     let p=this.filiereForm.value;
-    this.cs.addFiliere(p,this.chef).subscribe(
+    this.cs.addFiliere(p,this.chef,this.idDiplome).subscribe(
       {
         next:(data)=>{alert(" Filiere update successfully")},
         error:(err)=>{

@@ -31,6 +31,13 @@
 
     </select>
   </div>
+  <div class="mb-3">
+    <label class="form-label">Type Diplome:</label>
+
+    <select class="form-select" [(ngModel)]="idDiplome">
+      <option *ngFor="let c of diplomes "  [value]="c.id"  >{{c.typeDiplome}}</option>
+    </select>
+  </div>
 </div>
 
 
