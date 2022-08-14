@@ -1,0 +1,63 @@
+<div class="container ">
+
+  <mat-card>
+    <mat-stepper
+      class="example-stepper"
+      [orientation]="(stepperOrientation | async)!" linear #stepper>
+      <mat-step  label="choix de diplome" >
+        <form >
+          <mat-form-field appearance="fill">
+            <mat-label>Select Diplome</mat-label>
+            <mat-select  required>
+              <mat-option *ngFor="let d of Diplomes" (click)='handleFilieres(d.id)' value={{d.id}}>{{d.typeDiplome}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button class="btn btn-info" matStepperNext mat-button >Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="firstFormGroup"  label="choix de la filiere">
+        <form  [formGroup]="firstFormGroup">
+          <mat-form-field appearance="fill">
+            <mat-label> </mat-label>
+            <mat-select formControlName="idFiliere" required>
+              <mat-option  *ngFor="let i of filieres"  value={{i.id}} >{{i.titre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button class="btn btn-danger" matStepperPrevious>Back</button>
+            <button class="btn btn-info" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup" label="remplire votre information personelles">
+        <form [formGroup]="secondFormGroup" (ngSubmit)="handleInscrireStudent()">
+          <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" placeholder="Ex. 12345678" required>
+          </mat-form-field><br>
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" placeholder="Ex. 12345678" required>
+          </mat-form-field><br>
+          <mat-form-field appearance="fill">
+            <mat-label>votre code nationale d'etudiant</mat-label>
+            <input matInput formControlName="cne" placeholder="Ex. 12345678" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious class="btn btn-danger">Back</button>
+            <button mat-button matStepperNext type="submit" class="btn btn-info">valider</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>votre preinscription a ete bien enregistre</p>
+        <div>
+          <button mat-button [routerLink]="['/index/home']" routerLinkActive="router-link-active" class="btn btn-info" >Exit</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </mat-card>
+</div>

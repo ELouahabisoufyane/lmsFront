@@ -1,0 +1,49 @@
+<div class="container" style="padding: 110px; " >
+
+  <div class="col-md-6 offset-md-3">
+    <div class="card">
+      <div class="card-header">Authentication</div>
+      <div class="card-body">
+        <form [formGroup]="LoginGroup" (ngSubmit)="handleLogin()">
+          <div class="mb-3">
+            <label class="form-label">Username </label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" ><i class="bi bi-person"></i></span>
+              </div>
+              <input type="text" formControlName="username" class="form-control" >
+
+            </div>
+
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" ><i class="bi bi-lock"></i></span>
+              </div>
+              <input  [type]="hide ? 'text':'password'" formControlName="password" class="form-control "  />
+              <div class="input-group-append">
+                            <span class="input-group-text" (click)="password_show_hide()">
+                              <i [ngClass]=" hide ? 'bi bi-eye' : 'bi bi-eye-fill'" ></i>
+
+                            </span>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <div class  class="text-danger " *ngIf="errormessage">
+            {{errormessage}}
+          </div>
+          <div class="text-center">
+            <button class="btn btn-info" type="submit"> Login </button>
+          </div>
+        </form>
+      </div>
+    </div></div>
+</div>
+

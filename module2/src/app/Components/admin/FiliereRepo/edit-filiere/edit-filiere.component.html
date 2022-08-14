@@ -1,0 +1,36 @@
+<div class="container p-5 mt-5 col-md-6 offset-md-3  border border-info">
+
+
+
+
+
+
+  <form [formGroup]="filiereForm" (ngSubmit)="handleUpdateFiliere()">
+
+    <div class="mb-3">
+      <label class="form-label"> Titre:</label>
+      <input type="text" formControlName="titre" class="form-control">
+      <small *ngIf="filiereForm.controls['titre'].errors && filiereForm.controls['titre'].touched" class="text-danger">
+        {{this.cs.getErrorMessage('titre',filiereForm.controls['titre'].errors)}}
+      </small>
+    </div>
+
+
+    <div  class="text-center">
+      <button [disabled]=" filiereForm.invalid" style="margin-right: 20px"  class="btn btn-success text-center "  type="submit">Save</button>
+
+      <button  class="btn btn-success text-center " (click)="annuler()" >Annuler</button>
+    </div>
+  </form>
+  <div class="mb-3">
+    <label class="form-label">Chef de Filiere:</label>
+
+    <select class="form-select" [(ngModel)]="chef">
+      <option [value]="-1">pas</option>
+      <option *ngFor="let c of profs "  [value]="c.id"  >{{c.username}}</option>
+
+    </select>
+  </div>
+</div>
+
+
