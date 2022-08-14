@@ -18,6 +18,9 @@ export class ModulesInscrisComponent implements OnInit {
   promotion:Promotion;
   niveaux:Niveau[];
   filiere: Filiere;
+  windowScrolled = false;
+
+
   constructor(public auths:AuthentificationserviceService,private es:EtudiantService,private ps:PromotionService) {
     this.etudiant=this.auths.authenticatedUser;
   }
@@ -39,8 +42,14 @@ export class ModulesInscrisComponent implements OnInit {
           });
         }
       });
+    window.addEventListener('scroll', () => {
+      this.windowScrolled = window.pageYOffset !== 0;
+    });
 
 
   }
 
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
+  }
 }

@@ -55,7 +55,6 @@ import {HomeComponent} from "./Components/admin/home/home/home.component";
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,6 +95,7 @@ import {HomeComponent} from "./Components/admin/home/home/home.component";
     DetailpromoComponent,
     NavbarComponent,
     ModulesInscrisComponent,
+
 
 
 
