@@ -5,6 +5,7 @@ import {Filiere} from "../../../../Models/filiere";
 import {AuthentificationserviceService} from "../../../../services/authentificationservice.service";
 import {FiliereService} from "../../../../services/filiere.service";
 import {ProfService} from "../../../../services/prof.service";
+import {Module} from "../../../../Models/Module";
 
 
 @Component({
@@ -15,7 +16,7 @@ import {ProfService} from "../../../../services/prof.service";
 export class HometComponent implements OnInit {
   profid: number;
   filiere:Filiere;
-  modules:Array<any>;
+  modules:Module[];
   promotions: Promotion[];
   promo: any;
   private filiereid: any;
@@ -37,6 +38,11 @@ export class HometComponent implements OnInit {
 
       }
     );
+    this.prof.getModules(this.profid).subscribe({
+      next:(data)=>{
+         this.modules=data;
+      }
+    })
   }
   handleConsulterPromo(promo: any) {
     this.r.navigateByUrl("/teacher/detailpromo/"+promo);
