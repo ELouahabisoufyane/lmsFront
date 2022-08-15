@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 
 import {Observable} from "rxjs";
+import {Module} from "../Models/Module";
 
 
 
@@ -57,5 +58,9 @@ export class ProfService {
   }
   public getFiliere(id:number):Observable<any> {
     return this.http.get(this.apiServerUrl+'/prof/maFiliere/'+id);
+  }
+
+  getModules(profid: number) :Observable<Module[]>{
+    return this.http.get<Module[]>(this.apiServerUrl+'/prof/modules/'+profid);
   }
 }

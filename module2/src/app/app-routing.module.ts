@@ -30,7 +30,7 @@ import {InscriptionComponent} from "./Components/admin/home/inscription/inscript
 import {AboutComponent} from "./Components/admin/home/about/about.component";
 import {HomeComponent} from "./Components/admin/home/home/home.component";
 import {NavebarComponent} from "./Components/admin/home/navebar/navebar.component";
-import {DiplomeManageComponent} from "./Components/admin/diplome-manage/diplome-manage.component";
+
 
 
 
@@ -72,7 +72,7 @@ const routes: Routes = [
       {path: "detailn/:id",component:DetailNiveauComponent},
       {path: "editfiliere/:id",component:EditFiliereComponent},
       {path: "newfiliere",component:NewFiliereComponent},
-      {path: "Diplome",component:DiplomeManageComponent}
+
   ]},
   {path: "student",component:NavbarComponent,canActivate:[AuthenticationGuard],children:[
       {path: "moduleinscrit",component:ModulesInscrisComponent},
