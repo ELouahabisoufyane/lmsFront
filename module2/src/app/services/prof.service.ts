@@ -60,7 +60,7 @@ export class ProfService {
     return this.http.get(this.apiServerUrl+'/prof/maFiliere/'+id);
   }
 
-  getModules(profid: number) :Observable<Module[]>{
-    return this.http.get<Module[]>(this.apiServerUrl+'/prof/modules/'+profid);
+  public getModules(id:number):Observable<Module[]> {
+    return this.http.get<Module[]>(this.apiServerUrl+'/prof/modules/'+id);
   }
 }

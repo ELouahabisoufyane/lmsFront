@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="card mt-4">
+    <div class="card-header">
+      <p class="text-center">
+        les Diplomes de Formation :
+      </p>
+    </div>
+    <div class="row justify-content-end ">
+      <div class="col-md-4  mt-4 mb-2">
+        <div class="col"><button class="btn" data-bs-toggle="modal" data-bs-target="#addDiplome" > <i class="bi bi-plus-square"></i></button></div>
+      </div>
+    </div>
+      <div class="card-body p-3">
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let m of diplomes">
+            <mat-expansion-panel-header>
+              <mat-panel-title >
+                {{m.typeDiplome}}
+              </mat-panel-title>
+              <mat-panel-description *ngIf="m.indece==1">
+                Licence
+              </mat-panel-description>
+              <mat-panel-description *ngIf="m.indece==2">
+                Master
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <button class="btn btn-warning mx-2" (click)="passDiplome(m.id)" data-bs-toggle="modal" data-bs-target="#updateDiplome"><i class="bi bi-gear"></i></button>
+            <button class="btn btn-warning mx-2" (click)="handleDelete(m.id)"><i class="bi bi-trash"></i></button>
+          </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for adding a module -->
+<div class="modal fade" id="addDiplome" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <div class="mb-3">
+          </div>
+          <form [formGroup]="diplomeForm" (ngSubmit)="handleAddDiplome()">
+            <label class="form-label">Type de Diplome:</label>
+            <select class="form-select"  formControlName="indece">
+              <option [ngValue]="1" >Licence</option>
+              <option [ngValue]="2" >Master</option>
+            </select>
+            <div class="mb-3">
+            <label class="form-label">Titre:</label>
+            <input type="text" formControlName="typeDiplome" class="form-control">
+          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="refresh()">Close</button>
+              <button type="button" type="submit" class="btn btn-primary text-center" >Save module</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for adding a module -->
+<div class="modal fade" id="updateDiplome" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <div class="mb-3">
+          </div>
+          <form [formGroup]="updateDiplomeForm" (ngSubmit)="handleUpdateDiplome()">
+            <label class="form-label">Type de Diplome:</label>
+            <select class="form-select"  formControlName="indece">
+              <option *ngIf='updateDiplomeForm.value["indece"]==1'>Licence</option>
+              <option *ngIf='updateDiplomeForm.value["indece"]==2'>Master</option>
+              <option [ngValue]="1" >Licence</option>
+              <option [ngValue]="2" >Master</option>
+            </select>
+            <div class="mb-3">
+              <label class="form-label">Titre:</label>
+              <input type="text" formControlName="typeDiplome" class="form-control" >
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="refresh()">Close</button>
+              <button type="button" type="submit" class="btn btn-primary text-center" >Save Modification</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

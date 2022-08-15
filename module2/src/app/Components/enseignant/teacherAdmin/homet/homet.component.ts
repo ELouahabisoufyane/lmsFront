@@ -16,7 +16,6 @@ import {Module} from "../../../../Models/Module";
 export class HometComponent implements OnInit {
   profid: number;
   filiere:Filiere;
-
   promotions: Promotion[];
   promo: any;
   private filiereid: any;
@@ -41,7 +40,8 @@ export class HometComponent implements OnInit {
     );
     this.prof.getModules(this.profid).subscribe({
       next:(data)=>{
-        this.modules=data;
+         this.modules=data;
+
       }
     })
   }
