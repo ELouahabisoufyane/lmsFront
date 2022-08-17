@@ -52,6 +52,8 @@ import {NewClassComponent} from "./Components/admin/ClassManger/new-class/new-cl
 import {FooterComponent} from "./Components/admin/footer/footer.component";
 import {LoginComponent} from "./Components/login/login.component";
 import {HomeComponent} from "./Components/admin/home/home/home.component";
+import {DiplomeManageComponent} from "./Components/admin/diplome-manage/diplome-manage.component";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 
@@ -96,7 +98,7 @@ import {HomeComponent} from "./Components/admin/home/home/home.component";
     DetailpromoComponent,
     NavbarComponent,
     ModulesInscrisComponent,
-
+    DiplomeManageComponent,
 
 
 
@@ -121,7 +123,8 @@ import {HomeComponent} from "./Components/admin/home/home/home.component";
     MatSelectModule,
     MatListModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

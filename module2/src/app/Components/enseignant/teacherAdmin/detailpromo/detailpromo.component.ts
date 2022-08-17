@@ -11,6 +11,8 @@ import {Teacher} from "../../../../Models/teacher";
 import {PromotionService} from "../../../../services/promotion.service";
 import {SemestreService} from "../../../../services/semestre.service";
 import {ProfService} from "../../../../services/prof.service";
+import {ElementService} from "../../../../services/element.service";
+import {Element} from "../../../../Models/Element";
 
 
 
@@ -42,11 +44,14 @@ export class DetailpromoComponent implements OnInit {
   module=new Module();
   ModuleForm: FormGroup;
   editForm: FormGroup;
-
+  addElementForm: FormGroup;
+  idModule:number;
+  element:Element;
+  updateElementForm: FormGroup;
   public selection = new SelectionModel<Student>(true, []);
   displayedColumns: string[] = ['select','id','username','password','selected','cne'];
   moduleid: number;
-  constructor(private ro:ActivatedRoute,private ps:PromotionService,private ss:SemestreService,private profS:ProfService,private fb:FormBuilder) {
+  constructor(private ro:ActivatedRoute,private ps:PromotionService,private ss:SemestreService,private profS:ProfService,private fb:FormBuilder,private es:ElementService ) {
     this.ModuleForm=this.fb.group({
       id:this.fb.control(null),
       titre:this.fb.control(null),
@@ -54,10 +59,19 @@ export class DetailpromoComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.updateElementForm=this.fb.group({
+      id:this.fb.control(this.element?.id),
+      name:this.fb.control(this.element?.name),
+    })
+    this.addElementForm=this.fb.group({
+      id:this.fb.control(null),
+      name:this.fb.control(null),
+    })
     this.editForm=this.fb.group({
       id:this.fb.control(this.module.id),
       titre:this.fb.control(this.module.titre),
     });
+
     this.promoid=this.ro.snapshot.params['id'];
     this.ps.getPromo(this.promoid).subscribe({
       next:(data)=>{
@@ -96,6 +110,9 @@ export class DetailpromoComponent implements OnInit {
       }
     )
   }*/
+
+
+
 
 
 
@@ -170,5 +187,52 @@ export class DetailpromoComponent implements OnInit {
     this.passSemestre(id);
     this.module=m;
     this.ngOnInit();
+  }
+
+  handleRetirerElement(id:number) {
+    this.es.deleteElement(id).subscribe({
+      next:(data)=>{
+        alert("element deleted successfully");
+        this.ngOnInit();
+      }
+    })
+
+  }
+
+  handleaddElement() {
+    let e=this.addElementForm.value;
+    this.es.addElement(e,this.idModule,this.chef).subscribe({
+      next:(data)=>{
+        alert("element added successfully");
+        this.ngOnInit();
+
+      }
+    });
+
+
+  }
+
+  getModuleid(id: number) {
+    this.idModule=id;
+
+  }
+
+  passElement(e: Element, id: number) {
+    this.getModuleid(id);
+    this.element=e;
+    this.ngOnInit();
+
+
+  }
+
+  handleeditElement() {
+    let e=this.updateElementForm.value;
+    this.es.addElement(e,this.idModule,this.chef).subscribe({
+      next:(data)=>{
+        alert("element updated successfully");
+        this.ngOnInit();
+
+      }
+    });
   }
 }
