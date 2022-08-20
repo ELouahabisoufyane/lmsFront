@@ -17,7 +17,7 @@ export class ElementService {
     return this.http.delete<void>(this.apiServerUrl+"/element/removeElement/"+id);
   }
 
-  public addElement(e: Element, idModule: number, chef: number):Observable<Element> {
+  public  addElement(e: Element, idModule: number, chef: number):Observable<Element> {
     return this.http.post<Element>(this.apiServerUrl+"/element/addElement/"+idModule+"/"+chef,e);
 
   }

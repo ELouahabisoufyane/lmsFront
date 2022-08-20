@@ -57,18 +57,17 @@ import {MatMenuModule} from "@angular/material/menu";
 import {
   DetailElementModuleComponent
 } from "./Components/enseignant/teacherAdmin/detail-element-module/detail-element-module.component";
-
-import {QuillModule} from "ngx-quill";
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+//import {QuillModule} from "ngx-quill";
 import {AngularEditorModule} from "@kolkov/angular-editor";
 
-
+import 'froala-editor/js/plugins.pkgd.min.js'
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-
     HomeComponent,
     LoginComponent,
     AdminTemplateComponent,
@@ -76,11 +75,9 @@ import {AngularEditorModule} from "@kolkov/angular-editor";
     NewClassComponent,
     EditClassComponent,
     FooterComponent,
-
     ProfesseurComponent,
     EtudiantComponent,
     AdminComponent,
-
     NewProfComponent,
      UserComponent,
      EditProfComponent,
@@ -121,7 +118,7 @@ import {AngularEditorModule} from "@kolkov/angular-editor";
     BrowserAnimationsModule,
     MatTabsModule,
     MatCardModule,
-
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     MatIconModule,
     MatExpansionModule,
     MatSnackBarModule,
@@ -134,7 +131,7 @@ import {AngularEditorModule} from "@kolkov/angular-editor";
     MatCheckboxModule,
     MatMenuModule,
 
-    QuillModule,
+    //QuillModule,
     AngularEditorModule
   ],
   providers: [],
