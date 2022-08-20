@@ -108,7 +108,7 @@
                                       <td colspan="4">{{e.name}}</td>
                                       <td colspan="3"><button class="btn btn-danger" (click)="handleRetirerElement(e.id)"><i class="bi bi-trash-fill"></i></button></td>
                                       <td colspan="3"><span data-bs-toggle="modal" data-bs-target="#update" class="btn btn-success"  (click)="passElement(e,m.id)" > <i class="bi bi-wrench-adjustable"> </i></span></td>
-                                      <td> <button class="btn btn-warning">Consulter</button></td>
+                                      <td> <button class="btn btn-warning" routerLink="/teacher/detailelement/{{e.id}}">Consulter</button></td>
                                     </tr>
                                     </tbody>
                                   </table>

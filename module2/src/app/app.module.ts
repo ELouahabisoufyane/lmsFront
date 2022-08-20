@@ -54,6 +54,13 @@ import {LoginComponent} from "./Components/login/login.component";
 import {HomeComponent} from "./Components/admin/home/home/home.component";
 import {DiplomeManageComponent} from "./Components/admin/diplome-manage/diplome-manage.component";
 import {MatMenuModule} from "@angular/material/menu";
+import {
+  DetailElementModuleComponent
+} from "./Components/enseignant/teacherAdmin/detail-element-module/detail-element-module.component";
+
+import {QuillModule} from "ngx-quill";
+import {AngularEditorModule} from "@kolkov/angular-editor";
+
 
 
 
@@ -99,6 +106,7 @@ import {MatMenuModule} from "@angular/material/menu";
     NavbarComponent,
     ModulesInscrisComponent,
     DiplomeManageComponent,
+    DetailElementModuleComponent,
 
 
 
@@ -124,7 +132,10 @@ import {MatMenuModule} from "@angular/material/menu";
     MatListModule,
     MatTableModule,
     MatCheckboxModule,
-    MatMenuModule
+    MatMenuModule,
+
+    QuillModule,
+    AngularEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

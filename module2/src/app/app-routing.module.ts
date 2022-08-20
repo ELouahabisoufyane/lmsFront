@@ -31,6 +31,9 @@ import {AboutComponent} from "./Components/admin/home/about/about.component";
 import {HomeComponent} from "./Components/admin/home/home/home.component";
 import {NavebarComponent} from "./Components/admin/home/navebar/navebar.component";
 import {DiplomeManageComponent} from "./Components/admin/diplome-manage/diplome-manage.component";
+import {
+  DetailElementModuleComponent
+} from "./Components/enseignant/teacherAdmin/detail-element-module/detail-element-module.component";
 
 
 
@@ -81,7 +84,8 @@ const routes: Routes = [
     ]},
   {path: "teacher",component:TeacherComponent,canActivate:[AuthenticationGuard],children:[
       {path: "homet/:id",component:HometComponent},
-      {path: "detailpromo/:id",component:DetailpromoComponent}
+      {path: "detailpromo/:id",component:DetailpromoComponent},
+      {path: "detailelement/:id",component:DetailElementModuleComponent}
     ]}
 
 
