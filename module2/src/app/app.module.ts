@@ -63,8 +63,6 @@ import {AngularEditorModule} from "@kolkov/angular-editor";
 
 import 'froala-editor/js/plugins.pkgd.min.js'
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,10 +91,8 @@ import 'froala-editor/js/plugins.pkgd.min.js'
      AboutComponent,
      NavebarComponent,
     InscriptionComponent,
-
     TeacherComponent,
     FiliereListComponent,
-
     HometComponent,
     SidenavComponent,
     DetailpromoComponent,
@@ -104,10 +100,6 @@ import 'froala-editor/js/plugins.pkgd.min.js'
     ModulesInscrisComponent,
     DiplomeManageComponent,
     DetailElementModuleComponent,
-
-
-
-
   ],
   imports: [
     BrowserModule,
