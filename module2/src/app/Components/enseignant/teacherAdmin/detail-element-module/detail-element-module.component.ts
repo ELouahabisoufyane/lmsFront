@@ -1,8 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {AngularEditorConfig} from "@kolkov/angular-editor";
 
-
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {editLink} from "@syncfusion/ej2-angular-richtexteditor";
+import {AnnonceService} from "../../../../services/annonce.service";
 
 
 
@@ -13,40 +14,26 @@ import {AngularEditorConfig} from "@kolkov/angular-editor";
 })
 export class DetailElementModuleComponent implements OnInit {
    elementid:number;
-   afficher:boolean=false
-  name = 'Angular 6';
-  htmlContent = '';
-
-  config: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: '10rem',
-    minHeight: '5rem',
-    placeholder: 'Enter text in this rich text editor....',
-    defaultParagraphSeparator: 'p',
-    defaultFontName: 'Arial',
-    customClasses: [
-      {
-        name: 'Quote',
-        class: 'quoteClass',
-      },
-      {
-        name: 'Title Heading',
-        class: 'titleHead',
-        tag: 'h1',
-      },
-    ],
-  };
+   afficher:boolean=false;
+   form: FormGroup;
+   editorContent: any;
+   pub: boolean=false;
+   annonces:Array<string>;
 
 
-  constructor(private ro:ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.elementid=this.ro.snapshot.params['id'];
+
+  constructor(private ro:ActivatedRoute,private fb: FormBuilder,private as:AnnonceService) {
+
 
   }
 
-
+  ngOnInit(): void {
+    this.elementid=this.ro.snapshot.params['id'];
+    this.form=this.fb.group({
+      titre :this.fb.control(null,[Validators.required]),
+    });
+  }
 
 
 
@@ -57,5 +44,22 @@ export class DetailElementModuleComponent implements OnInit {
     else {
       this.afficher=false;
     }
+  }
+
+
+  publier(editorContent: any) {
+    this.pub=true;
+    this.handleAfficher();
+    let a:string;
+    a=editorContent.toString();
+    this.as.addAnnonce(a).subscribe(
+      {
+        next:(data)=>{
+
+          this.ngOnInit();
+        }
+      }
+    )
+
   }
 }

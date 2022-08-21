@@ -1,13 +1,11 @@
-import { NgModule } from '@angular/core';
+import {NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserModule } from '@angular/platform-browser';
+import {AppRoutingModule } from './app-routing.module';
+import {AppComponent } from './app.component';
+import {HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from "@angular/material/tabs";
-
 import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
@@ -15,9 +13,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
-
 import {MatListModule} from "@angular/material/list";
-
 import {MatTableModule} from "@angular/material/table";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ModulesInscrisComponent} from "./Components/etudiant/studentTemplate/modules-inscris/modules-inscris.component";
@@ -54,15 +50,9 @@ import {LoginComponent} from "./Components/login/login.component";
 import {HomeComponent} from "./Components/admin/home/home/home.component";
 import {DiplomeManageComponent} from "./Components/admin/diplome-manage/diplome-manage.component";
 import {MatMenuModule} from "@angular/material/menu";
-import {
-  DetailElementModuleComponent
-} from "./Components/enseignant/teacherAdmin/detail-element-module/detail-element-module.component";
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-//import {QuillModule} from "ngx-quill";
-import {AngularEditorModule} from "@kolkov/angular-editor";
-
-import 'froala-editor/js/plugins.pkgd.min.js'
-
+import {DetailElementModuleComponent} from "./Components/enseignant/teacherAdmin/detail-element-module/detail-element-module.component";
+import {FroalaEditorModule, FroalaViewModule} from "angular-froala-wysiwyg";
+import 'froala-editor/js/plugins.pkgd.min.js';
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,7 +104,6 @@ import 'froala-editor/js/plugins.pkgd.min.js'
     MatIconModule,
     MatExpansionModule,
     MatSnackBarModule,
-
     MatStepperModule,
     MatInputModule,
     MatSelectModule,
@@ -122,9 +111,7 @@ import 'froala-editor/js/plugins.pkgd.min.js'
     MatTableModule,
     MatCheckboxModule,
     MatMenuModule,
-
-    //QuillModule,
-    AngularEditorModule
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

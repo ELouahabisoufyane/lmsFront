@@ -1,52 +1,43 @@
 <div class="container">
-  <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+  <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4" >
     <mat-tab label="Flux">
         <div class="card" *ngIf="afficher==false">
           <div class="card-body" (click)="handleAfficher()">
-            <mat-card>Annoncez quelque chose à votre classe</mat-card>
-
+            <mat-card> Cliquer pour annoncez quelque chose à votre classe</mat-card>
           </div>
         </div>
-      <div class="card mt-2"  *ngIf="afficher">
+      <div class="card m-5"  *ngIf="afficher">
         <div class="card-header">
-          <mat-form-field appearance="fill">
-          <mat-label>Toppings</mat-label>
-          <mat-select  multiple>
-            <mat-select-trigger>
-
-            </mat-select-trigger>
-
-          </mat-select>
-          </mat-form-field>
-
-
-
-
-
         </div>
          <div class="card-body">
-           <h1>AngularEditor</h1>
-           <div [froalaEditor]>Hello, Froala!</div>
-           <h1>HTML Output</h1>
-           <div class="html">
-             {{ htmlContent }}
-           </div>
+           <div [froalaEditor] [(froalaModel)]="editorContent"></div>
          </div>
-        <div class="card-footer">
-          <mat-card><button class="btn btn-light" (click)="handleAfficher()"> Annuler</button></mat-card>
+        <div class="card-footer text-center">
+          <button class="btn btn-danger" (click)="handleAfficher()"> Annuler</button>
+          <button class="btn btn-success m-2" (click)="publier(editorContent)"> Publier</button>
         </div>
       </div>
+      <div *ngIf="annonces">
+      <div class="card m-5" *ngFor="let a of annonces" >
+            <div class="card-header"> Annonce :</div>
+            <div class="card-body">
+              <div [froalaView]="a"> </div>
+            </div>
+      </div>
+      </div>
+      <div *ngIf="!annonces">
+          your annonce will be here
 
-
-
-
-
-
-
-
+      </div>
 
     </mat-tab>
-    <mat-tab label="Devoirs et travaux "> Content 2 </mat-tab>
+    <mat-tab label="Devoirs et travaux ">
+      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu>
+    </mat-tab>
     <mat-tab label="Personnes"> Content 3 </mat-tab>
     <mat-tab label="notes"> Content 3 </mat-tab>
   </mat-tab-group>
