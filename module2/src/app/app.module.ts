@@ -1,13 +1,11 @@
-import { NgModule } from '@angular/core';
+import {NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserModule } from '@angular/platform-browser';
+import {AppRoutingModule } from './app-routing.module';
+import {AppComponent } from './app.component';
+import {HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from "@angular/material/tabs";
-
 import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
@@ -15,9 +13,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
-
 import {MatListModule} from "@angular/material/list";
-
 import {MatTableModule} from "@angular/material/table";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ModulesInscrisComponent} from "./Components/etudiant/studentTemplate/modules-inscris/modules-inscris.component";
@@ -54,19 +50,18 @@ import {LoginComponent} from "./Components/login/login.component";
 import {HomeComponent} from "./Components/admin/home/home/home.component";
 import {DiplomeManageComponent} from "./Components/admin/diplome-manage/diplome-manage.component";
 import {MatMenuModule} from "@angular/material/menu";
-import {
-  DetailElementModuleComponent
-} from "./Components/enseignant/teacherAdmin/detail-element-module/detail-element-module.component";
+import {DetailElementModuleComponent} from "./Components/enseignant/teacherAdmin/detail-element-module/detail-element-module.component";
 import {FroalaEditorModule, FroalaViewModule} from "angular-froala-wysiwyg";
-
 import 'froala-editor/js/plugins.pkgd.min.js';
 import {MatButtonModule} from "@angular/material/button";
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 9a8a69d4d6d98feb13f13c62587c81166aa395b9
 @NgModule({
   declarations: [
     AppComponent,
-
     HomeComponent,
     LoginComponent,
     AdminTemplateComponent,
@@ -74,11 +69,9 @@ import {MatButtonModule} from "@angular/material/button";
     NewClassComponent,
     EditClassComponent,
     FooterComponent,
-
     ProfesseurComponent,
     EtudiantComponent,
     AdminComponent,
-
     NewProfComponent,
      UserComponent,
      EditProfComponent,
@@ -94,10 +87,8 @@ import {MatButtonModule} from "@angular/material/button";
      AboutComponent,
      NavebarComponent,
     InscriptionComponent,
-
     TeacherComponent,
     FiliereListComponent,
-
     HometComponent,
     SidenavComponent,
     DetailpromoComponent,
@@ -105,10 +96,6 @@ import {MatButtonModule} from "@angular/material/button";
     ModulesInscrisComponent,
     DiplomeManageComponent,
     DetailElementModuleComponent,
-
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -119,11 +106,10 @@ import {MatButtonModule} from "@angular/material/button";
     BrowserAnimationsModule,
     MatTabsModule,
     MatCardModule,
-
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     MatIconModule,
     MatExpansionModule,
     MatSnackBarModule,
-
     MatStepperModule,
     MatInputModule,
     MatSelectModule,
@@ -133,7 +119,10 @@ import {MatButtonModule} from "@angular/material/button";
     MatMenuModule,
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     MatButtonModule
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9a8a69d4d6d98feb13f13c62587c81166aa395b9
   ],
   providers: [],
   bootstrap: [AppComponent]
