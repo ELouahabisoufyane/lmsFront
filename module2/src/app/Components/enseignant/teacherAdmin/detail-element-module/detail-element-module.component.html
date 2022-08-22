@@ -1,55 +1,139 @@
 <div class="container">
   <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4" >
     <mat-tab label="Flux">
-        <div class="card" *ngIf="afficher==false">
-          <div class="card-body" (click)="handleAfficher()">
-            <mat-card> Cliquer pour annoncez quelque chose à votre classe</mat-card>
-
-          </div>
+      <div class="card" *ngIf="afficher==false">
+        <div class="card-body" (click)="handleAfficher()">
+          <mat-card> Cliquer pour annoncez quelque chose à votre classe</mat-card>
         </div>
+      </div>
       <div class="card m-5"  *ngIf="afficher">
         <div class="card-header">
         </div>
-         <div class="card-body">
-           <div [froalaEditor] [(froalaModel)]="editorContent"></div>
-
-         </div>
+        <div class="card-body">
+          <div [froalaEditor] [(froalaModel)]="editorContent"></div>
+        </div>
         <div class="card-footer text-center">
           <button class="btn btn-danger" (click)="handleAfficher()"> Annuler</button>
           <button class="btn btn-success m-2" (click)="publier(editorContent)"> Publier</button>
         </div>
       </div>
       <div *ngIf="annonces">
-      <div class="card m-5" *ngFor="let a of annonces" >
-            <div class="card-header"> Annonce :</div>
-            <div class="card-body">
-              <div [froalaView]="a"> </div>
-            </div>
-      </div>
+        <div class="card m-5" *ngFor="let a of annonces" >
+          <div class="card-header"> Annonce :</div>
+          <div class="card-body">
+            <div [froalaView]="a"> </div>
+          </div>
+        </div>
       </div>
       <div *ngIf="!annonces">
-          your annonce will be here
-
+        your annonce will be here
       </div>
-
-
-
-
-
-
-
-
     </mat-tab>
-    <mat-tab label="Devoirs et travaux ">
-      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
-      </mat-menu>
+    <mat-tab label="Traveaux & devoirs">
+      <div class="container-md " >
+        <button mat-raised-button color="primary" class="mt-5 mb-2 " data-bs-toggle="modal" data-bs-target="#addTheme" aria-label="Example icon button with a delete icon">
+          + Creer Theme
+        </button>
+        <mat-divider class="mt-2"></mat-divider>
+      </div>
+      <div *ngIf="Themes">
+        <div *ngFor="let t of Themes" class="mt-3 " style="margin-right: 5%;margin-left: 5%">
+          <mat-card>
+            <div class="row">
+              <div class="col-md-4">
+                {{t.titre}}
+              </div>
+              <div class="col-md-4 text-center offset-4">
+                <button class="btn btn-light" [matMenuTriggerFor]="menu"  ><i class="bi bi-plus-circle"></i></button>
+                <mat-menu #menu="matMenu" >
+                  <button mat-menu-item (click)="handleIdAxe(t.id)" data-bs-toggle="modal" data-bs-target="#addAxe">
+                    <mat-icon>plus</mat-icon>
+                    <span>new Axe</span>
+                  </button>
+                  <button mat-menu-item >
+                    <mat-icon>voicemail</mat-icon>
+                    <span>new Ressource</span>
+                  </button>
+                </mat-menu>
+                <button class="btn btn-light"><i class="bi bi-three-dots-vertical"></i></button>
+              </div></div>
+          </mat-card>
+          <mat-divider class="bg-primary"></mat-divider>
+          <div *ngIf="t.subAxes.length !=0">
+            <mat-accordion *ngFor="let a of t.subAxes " class="example-headers-align">
+              <mat-expansion-panel  hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{a.titre}}
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Type your name and age
+                    <mat-icon>account_circle</mat-icon>
+                  </mat-panel-description>
 
-
+                </mat-expansion-panel-header>
+                <div [froalaView]="t.contentHtml"> </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+          <mat-card *ngIf="t.subAxes.length==0">Les élèves ne peuvent pas voir ce sujet pour l'instant, car il n'y a pas de devoir correspondant</mat-card>
+        </div>
+      </div>
     </mat-tab>
     <mat-tab label="Personnes"> Content 3 </mat-tab>
     <mat-tab label="notes"> Content 3 </mat-tab>
   </mat-tab-group>
 </div>
+
+
+
+
+
+
+
+<!-- Modal for update a element -->
+<div class="modal fade" id="addTheme" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <form [formGroup]="addThemeForm" (ngSubmit)="handleaddTheme()">
+            <div class="mb-3">
+              <label class="form-label">titre de Theme:</label>
+              <input type="text" formControlName="titre" class="form-control">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" type="submit" class="btn btn-primary text-center">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for update a element -->
+<div class="modal fade" id="addAxe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <form [formGroup]="addThemeForm" (ngSubmit)="handleAddAxe()">
+            <div class="mb-3">
+              <label class="form-label">titre d'axe:</label>
+              <input type="text" formControlName="titre" class="form-control">
+              <label class="form-label">contenat</label>
+              <div [froalaEditor] [(froalaModel)]="content"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" type="submit" class="btn btn-primary text-center">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

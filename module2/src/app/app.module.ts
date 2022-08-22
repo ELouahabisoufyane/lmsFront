@@ -60,6 +60,7 @@ import {
 import {FroalaEditorModule, FroalaViewModule} from "angular-froala-wysiwyg";
 
 import 'froala-editor/js/plugins.pkgd.min.js';
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -130,8 +131,8 @@ import 'froala-editor/js/plugins.pkgd.min.js';
     MatTableModule,
     MatCheckboxModule,
     MatMenuModule,
-    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
-
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
+    MatButtonModule
 
   ],
   providers: [],
