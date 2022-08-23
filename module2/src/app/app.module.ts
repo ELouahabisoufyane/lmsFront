@@ -54,11 +54,7 @@ import {DetailElementModuleComponent} from "./Components/enseignant/teacherAdmin
 import {FroalaEditorModule, FroalaViewModule} from "angular-froala-wysiwyg";
 import 'froala-editor/js/plugins.pkgd.min.js';
 import {MatButtonModule} from "@angular/material/button";
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 9a8a69d4d6d98feb13f13c62587c81166aa395b9
 @NgModule({
   declarations: [
     AppComponent,
@@ -119,10 +115,7 @@ import {MatButtonModule} from "@angular/material/button";
     MatMenuModule,
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     MatButtonModule
-<<<<<<< HEAD
 
-=======
->>>>>>> 9a8a69d4d6d98feb13f13c62587c81166aa395b9
   ],
   providers: [],
   bootstrap: [AppComponent]

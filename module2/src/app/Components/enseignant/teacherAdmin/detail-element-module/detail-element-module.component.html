@@ -1,0 +1,174 @@
+<div class="container">
+  <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4" >
+    <mat-tab label="Flux">
+      <div class="card" *ngIf="afficher==false">
+        <div class="card-body" (click)="handleAfficher()">
+          <mat-card> Cliquer pour annoncez quelque chose à votre classe</mat-card>
+        </div>
+      </div>
+      <div class="card m-5"  *ngIf="afficher">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+          <div [froalaEditor] [(froalaModel)]="editorContent"></div>
+
+
+      </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-danger" (click)="handleAfficher()"> Annuler</button>
+          <button type="submit"class="btn btn-info" (click)="publier()">Submit</button>
+        </div>
+      </div>
+
+        <div *ngIf="annonces.length!=0">
+        <div class="card m-5" *ngFor="let a of annonces" >
+          <div class="card-header"> Annonce :</div>
+          <div class="card-body">
+            <div [froalaView]="a"> </div>
+          </div>
+        </div>
+      </div>
+
+    </mat-tab>
+
+    <mat-tab label="Traveaux & devoirs">
+      <div class="container-md text-center " >
+        <button mat-raised-button color="primary" class="mt-5 mb-2 " data-bs-toggle="modal" data-bs-target="#addTheme" aria-label="Example icon button with a delete icon">
+          + Creer Theme
+        </button>
+        <mat-divider class="mt-2"></mat-divider>
+      </div>
+      <div *ngIf="Themes">
+        <div *ngFor="let t of Themes" class="mt-3 " style="margin-right: 5%;margin-left: 5%">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-md-10" style="font-size: large">
+                  {{t.titre}}
+                </div>
+                <div class="col-md-2    " style="text-align: right" >
+                  <button class="btn btn-light " [matMenuTriggerFor]="menu" style="text-align: right" ><i class="bi bi-plus-circle"></i></button>
+                  <mat-menu #menu="matMenu" >
+                    <button mat-menu-item (click)="handleIdAxe(t.id)" data-bs-toggle="modal" data-bs-target="#addAxe">
+                      <mat-icon>plus</mat-icon>
+                      <span>new Axe</span>
+                    </button>
+                    <button mat-menu-item  data-bs-toggle="modal" data-bs-target="#addRessource">
+                      <mat-icon>voicemail</mat-icon>
+                      <span>new Ressource</span>
+                    </button>
+                  </mat-menu>
+                  <button class="btn btn-light"><i class="bi bi-three-dots-vertical"></i></button>
+                </div></div>
+            </div>
+            <div class="card-body">
+              <div *ngIf="t.subAxes.length !=0">
+                <mat-accordion *ngFor="let a of t.subAxes " class="example-headers-align ">
+                  <mat-expansion-panel  hideToggle class="mt-2">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        {{a.titre}}
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        Desciption:
+                        <mat-icon>account_circle</mat-icon>
+                      </mat-panel-description>
+
+                    </mat-expansion-panel-header>
+                    <div [froalaView]="t.contentHtml"> </div>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+              <mat-card *ngIf="t.subAxes.length==0">Les élèves ne peuvent pas voir ce sujet pour l'instant, car il n'y a pas de devoir correspondant</mat-card>
+            </div>
+            </div>
+          </div>
+
+      </div>
+    </mat-tab>
+    <mat-tab label="Personnes"> Content 3 </mat-tab>
+    <mat-tab label="notes"> Content 3 </mat-tab>
+  </mat-tab-group>
+
+
+
+
+
+
+
+
+<!-- Modal for update a element -->
+<div class="modal fade" id="addTheme" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <form [formGroup]="addThemeForm" (ngSubmit)="handleaddTheme()">
+            <div class="mb-3">
+              <label class="form-label">titre de Theme:</label>
+              <input type="text" formControlName="titre" class="form-control">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" type="submit" class="btn btn-primary text-center">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for update a element -->
+<div class="modal fade" id="addAxe" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <form [formGroup]="addThemeForm" (ngSubmit)="handleAddAxe()">
+            <div class="mb-3">
+              <label class="form-label">titre d'axe:</label>
+              <input type="text" formControlName="titre" class="form-control">
+              <label class="form-label">contenat</label>
+              <div [froalaEditor] [(froalaModel)]="content"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" type="submit" class="btn btn-primary text-center">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="modal fade" id="addRessource" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <input type="file" class="file-input"
+                 (change)="onFileSelected($event)" #fileUpload>
+
+          <div class="file-upload">
+
+            {{fileName || "No file uploaded yet."}}
+
+            <button mat-mini-fab color="primary" class="upload-btn"
+                    (click)="fileUpload.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+</div>
