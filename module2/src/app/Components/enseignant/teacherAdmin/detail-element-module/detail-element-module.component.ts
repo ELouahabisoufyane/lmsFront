@@ -69,10 +69,11 @@ export class DetailElementModuleComponent implements OnInit {
     this.EleService.addTheme(this.Theme,this.elementid).subscribe({
         next:(data)=>{
           alert("bien ajouter");
+          this.ngOnInit();
         }
       }
     );
-    this.ngOnInit();
+
   }
 
   handleAddAxe() {
