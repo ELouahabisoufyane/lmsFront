@@ -1,5 +1,5 @@
 export class Ressource{
-   id : number;
-   url : URL;
-   titre : string;
+  id:string ;
+  name:string ;
+  type:string ;
 }
