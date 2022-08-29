@@ -6,5 +6,5 @@ export class Axe  {
    description: string;
    contentHtml : string;
    subAxes:Axe[];
-   ressorces:Array<any>;
+   ressources:Array<any>;
 }

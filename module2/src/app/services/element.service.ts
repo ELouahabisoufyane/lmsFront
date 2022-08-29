@@ -4,6 +4,8 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Element} from "../Models/Element";
 import {Axe} from "../Models/axe";
+import {Teacher} from "../Models/teacher";
+import {Student} from "../Models/student";
 
 
 @Injectable({
@@ -27,4 +29,15 @@ export class ElementService {
     return this.http.get<Axe[]>(this.apiServerUrl+"/element/getAxesByElement/"+idElement);
   }
 
+  public getElement(idElement: number):Observable<Element> {
+    return this.http.get<Element>(this.apiServerUrl+"/element/getElement/"+idElement);
+  }
+  public getProf(idElement:number):Observable<Teacher>{
+    return this.http.get<Teacher>(this.apiServerUrl+"/element/getProf/"+idElement);
+  }
+
+  getEtudiants(idElement: number):Observable<Student[]> {
+    return this.http.get<Student[]>(this.apiServerUrl+"/element/getEtudiants/"+idElement);
+
+  }
 }

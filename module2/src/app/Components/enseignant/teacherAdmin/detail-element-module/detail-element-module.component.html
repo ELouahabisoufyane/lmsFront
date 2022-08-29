@@ -46,7 +46,7 @@
                   <button class="btn btn-light " [matMenuTriggerFor]="menu" style="text-align: right" ><i class="bi bi-plus-circle"></i></button>
                   <mat-menu #menu="matMenu" >
                     <button mat-menu-item (click)="handleIdAxe(t.id)" data-bs-toggle="modal" data-bs-target="#addAxe">
-                      <mat-icon>plus</mat-icon>
+                      <mat-icon>add_box</mat-icon>
                       <span>new Axe</span>
                     </button>
                     <button mat-menu-item  data-bs-toggle="modal" (click)="handleIdAxe(t.id)"data-bs-target="#addRessource">
@@ -54,19 +54,35 @@
                       <span>new Ressource</span>
                     </button>
                   </mat-menu>
-                  <button class="btn btn-light"><i class="bi bi-three-dots-vertical"></i></button>
-                </div></div>
+                  <button  class="btn btn-light"[matMenuTriggerFor]="belowMenu" ><i class="bi bi-three-dots-vertical"></i></button>
+                  <mat-menu #belowMenu="matMenu" >
+                    <button mat-menu-item  (click)="handleDeleteAxe(t.id)">
+                      <mat-icon>delete</mat-icon>
+                      <span>Supprimer</span>
+                    </button>
+                    <button mat-menu-item data-bs-toggle="modal" data-bs-target="#editTheme" (click)="getoldTheme(t)"  >
+                      <mat-icon>edit</mat-icon>
+                      <span>Modifier</span>
+                    </button>
+                  </mat-menu>
+                </div>
+              </div>
             </div>
             <div class="card-body">
-              <table *ngIf="t.ressorces" class="table">
+              <table *ngIf="t.ressources" class="table">
                 <thead>
                 <tr>
                   <th colspan="10">Ressources</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr  *ngFor="let r of t.ressorces">
+                <tr  *ngFor="let r of t.ressources">
                   <td colspan="4"><a href="{{ r.url }}">{{ r.name }}</a></td>
+                  <td>
+                    <button   class="btn btn-danger" (click)="handelDeleteRessource(r.id)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                  </td>
                 </tr>
                 </tbody>
               </table>
@@ -78,38 +94,70 @@
                         {{a.titre}}
                       </mat-panel-title>
                       <mat-panel-description>
-                        Desciption:
-                        <mat-icon>account_circle</mat-icon>
+
+
                       </mat-panel-description>
                       <div class="col-md-2" style="text-align: right" >
                         <button class="btn btn-light " [matMenuTriggerFor]="menu" style="text-align: right" ><i class="bi bi-plus-circle"></i></button>
                         <mat-menu #menu="matMenu" >
                           <button mat-menu-item (click)="handleIdAxe(a.id)" data-bs-toggle="modal" data-bs-target="#addAxe">
-                            <mat-icon>plus</mat-icon>
+                            <mat-icon>add_box</mat-icon>
                             <span>new Axe</span>
                           </button>
                           <button mat-menu-item  data-bs-toggle="modal" (click)="handleIdAxe(a.id)"data-bs-target="#addRessource">
                             <mat-icon>voicemail</mat-icon>
                             <span>new Ressource</span>
                           </button>
+                          <button mat-menu-item  data-bs-toggle="modal" (click)="handleIdAxe(a.id)"data-bs-target="#addContent">
+                            <mat-icon>voicemail</mat-icon>
+                            <span>new Content</span>
+                          </button>
                         </mat-menu>
-                        <button class="btn btn-light"><i class="bi bi-three-dots-vertical"></i></button>
+                        <button  class="btn btn-light"[matMenuTriggerFor]="belowMenu" ><i class="bi bi-three-dots-vertical"></i></button>
+                        <mat-menu #belowMenu="matMenu" >
+                          <button mat-menu-item  >
+                            <mat-icon>delete</mat-icon>
+                            <span>Supprimer</span>
+                          </button>
+                          <button mat-menu-item data-bs-toggle="modal" data-bs-target="#editTheme" (click)="getoldTheme(t)"  >
+                            <mat-icon>edit</mat-icon>
+                            <span>Modifier</span>
+                          </button>
+                        </mat-menu>
                       </div>
                     </mat-expansion-panel-header>
-                    <div [froalaView]="a.contentHtml"> </div>
 
-                      <table *ngIf="a.ressorces" class="table">
+
+                      <table *ngIf="a.ressources" class="table">
                         <thead>
                         <tr>
                           <th colspan="10">Ressources</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr  *ngFor="let b of a.ressorces">
+                        <tr  *ngFor="let b of a.ressources">
                           <td colspan="4"><a href="{{ b.url }}">{{ b.name }}</a></td>
+                          <td>
+                            <button   class="btn btn-danger" (click)="handelDeleteRessource(b.id)">
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
                         </tr>
                         </tbody>
                       </table>
+                    <table *ngIf="a.contentHtml" class="table">
+                      <thead>
+                      <tr>
+                        <th colspan="10">Content</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr >
+                        <td colspan="4"> <div [froalaView]="a.contentHtml"> </div></td>
+
+                      </tr>
+                      </tbody>
+                    </table>
                   </mat-expansion-panel>
 
 
@@ -121,7 +169,48 @@
           </div>
       </div>
     </mat-tab>
-    <mat-tab label="Personnes"> Content 3 </mat-tab>
+    <mat-tab label="Personnes">
+      <div class="container mt-3">
+        <table class="table">
+          <thead>
+          <tr>
+              <td rowspan="3"><h1>Enseignants</h1></td></tr>
+          </thead>
+          <tbody >
+
+              <tr>
+
+                 <td ><h2> {{this.prof.username}}</h2></td>
+
+               </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="container mt-3">
+        <table class="table">
+          <thead>
+          <tr>
+            <td rowspan="3"><h1>Elèves</h1></td></tr>
+          </thead>
+          <tbody >
+
+          <tr *ngFor="let e of etudaints">
+
+            <td ><span class="text-capitalize text-secondary"> {{e.username}}</span></td>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+
+
+    </mat-tab>
     <mat-tab label="notes"> Content 3 </mat-tab>
   </mat-tab-group>
 <!-- Modal for update a element -->
@@ -155,8 +244,6 @@
             <div class="mb-3">
               <label class="form-label">titre d'axe:</label>
               <input type="text" formControlName="titre" class="form-control">
-              <label class="form-label">contenat</label>
-              <div [froalaEditor] [(froalaModel)]="content"></div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -209,4 +296,48 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal for update a Theme -->
+  <div class="modal fade" id="editTheme" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div>
+            <form [formGroup]="editTheme" (ngSubmit)="handleeditTheme()">
+              <div class="mb-3">
+                <label class="form-label">titre de Theme:</label>
+                <input type="text" formControlName="titre" class="form-control">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" type="submit" class="btn btn-primary text-center">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal for add a content -->
+  <div class="modal fade" id="addContent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="card m-5"  >
+            <div class="card-header">html content
+            </div>
+
+            <div class="card-body">
+              <div [froalaEditor] [(froalaModel)]="editorContent"></div>
+            </div>
+            <div class="card-footer text-center">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit"class="btn btn-info" (click)="addContent(editorContent)">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

@@ -18,4 +18,17 @@ export class AxeService {
   public  getAxes(idAxe: number):Observable<Axe[]> {
     return this.http.get<Axe[]>(this.apiServerUrl+"/Axe/getAxes/"+idAxe);
   }
+
+  public deleteAxe(id: number):Observable<void> {
+    return this.http.delete<void>(this.apiServerUrl+"/Axe/DeleteOne/"+id);
+
+  }
+
+  public deleteRessource(id:string):Observable<void> {
+    return this.http.delete<void >(this.apiServerUrl+"/Axe/DeleteRessource/"+id);
+  }
+
+  public addContent(content:string,axeId: number):Observable<void> {
+    return this.http.post<void>(this.apiServerUrl+"/Axe/addContent/"+axeId,content);
+  }
 }

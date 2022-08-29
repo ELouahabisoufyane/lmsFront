@@ -8,6 +8,9 @@ import {AxeService} from "../../../../services/axe.service";
 import {HttpClient, HttpEventType, HttpResponse} from "@angular/common/http";
 import {FileUploadService} from "../../../../services/file-upload-service.service";
 import {Observable} from "rxjs";
+import {Teacher} from "../../../../Models/teacher";
+import {Element} from "../../../../Models/Element";
+import {Student} from "../../../../Models/student";
 @Component({
   selector: 'app-detail-element-module',
   templateUrl: './detail-element-module.component.html',
@@ -31,12 +34,32 @@ export class DetailElementModuleComponent implements OnInit {
   progress = 0;
   message = '';
   fileInfos?: Observable<any>;
-
+  oldTheme:Axe;
+  editTheme:FormGroup;
+  prof: Teacher;
+  element:Element;
+  etudaints: Student[];
   constructor(private http: HttpClient, private ro: ActivatedRoute, private fb: FormBuilder, private as: AnnonceService, private axeS: AxeService, private EleService: ElementService, private uploadService: FileUploadService) {
   }
 
   ngOnInit(): void {
+
     this.elementid = this.ro.snapshot.params['id'];
+    this.EleService.getProf(this.elementid).subscribe({
+      next:(data)=>{
+        this.prof=data;
+      }
+    });
+    this.EleService.getEtudiants(this.elementid).subscribe({
+      next:(data)=>{
+        this.etudaints=data;
+      }
+    })
+    this.EleService.getElement(this.elementid).subscribe({
+      next:(data)=>{
+        this.element=data;
+      }
+    })
     this.form = this.fb.group({
       formModel: this.fb.control(null, [Validators.required]),
     });
@@ -47,18 +70,27 @@ export class DetailElementModuleComponent implements OnInit {
         description: this.fb.control(null, [Validators.required]),
         contentHtml: this.fb.control(this.editorContent, [Validators.required]),
       }
-    )
+    );
+    this.editTheme= this.fb.group(
+
+      {
+        id: this.oldTheme?.id,
+        titre: this.oldTheme?.titre,
+        description: this.oldTheme?.description,
+        contentHtml: this.oldTheme?.contentHtml,
+      }
+    );
     //this.fileInfos = this.uploadService.getFiles(this.axeId);
     this.EleService.getAllThemes(this.elementid).subscribe({
       next: (data) => {
         this.Themes = data;
         this.Themes.forEach((x)=>{
           this.uploadService.getFiles(x.id).subscribe((data)=>{
-            x.ressorces=data;
+            x.ressources=data;
             console.log(data);
             x.subAxes.forEach((y)=>{
               this.uploadService.getFiles(y.id).subscribe((data)=>{
-                y.ressorces=data;
+                y.ressources=data;
                 console.log(data);
               })
             })
@@ -153,4 +185,64 @@ export class DetailElementModuleComponent implements OnInit {
     }
   }
 
+  handleDeleteAxe(id: number) {
+    let conf=confirm("etes-vous sur de vouloir supprimer");
+    if(conf==false)
+      return;
+    else{
+    this.axeS.deleteAxe(id).subscribe({
+      next:(data)=>{
+        alert("Axe deleted successfuly");
+        this.ngOnInit();
+      }
+    });
+
+  }
+  }
+
+  getoldTheme(t: Axe) {
+    this.oldTheme=t;
+    this.ngOnInit();
+
+
+  }
+
+  handleeditTheme() {
+    let t= this.editTheme.value;
+
+    this.EleService.addTheme(t, this.elementid).subscribe({
+        next: (data) => {
+          alert("bien modifier");
+          this.ngOnInit();
+        }
+      }
+    );
+  }
+
+  handelDeleteRessource(id:string) {
+    let conf=confirm("etes-vous sur de vouloir supprimer");
+    if(conf==false)
+      return;
+    else {
+      this.axeS.deleteRessource(id).subscribe({
+        next: (data) => {
+          alert("Resource deleted successfuly");
+          this.ngOnInit();
+        }
+      })
+    }
+  }
+
+  addContent(editorContent: any) {
+    let content=editorContent.toString();
+    this.axeS.addContent(content,this.axeId).subscribe({
+      next:(data)=>{
+        alert("content aded successfully");
+        this.editorContent=null;
+        this.ngOnInit();
+
+      }
+    })
+
+  }
 }
