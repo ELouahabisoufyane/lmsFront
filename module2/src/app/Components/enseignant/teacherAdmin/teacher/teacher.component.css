@@ -29,3 +29,47 @@ mat-toolbar {
 ::ng-deep .mat-menu-content {
   width: 160px;
 }
+.sidebar-nav ul li {
+  margin: 10px 0px;
+}
+
+.sidebar-nav ul li a {
+  font-size: 32px;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 5px 10px;
+  background-color: #ff9800;
+  border-radius: 4px;
+}
+.sidebar-nav .offcanvas {
+  width: auto;
+  top: 60px;
+  background: transparent;
+  border: none;
+  visibility: visible !important;
+  transform: translateX(0%);
+}
+.sidebar-nav .offcanvas ul li a span.item-text {
+  display: none;
+}
+.sidebar-nav .offcanvas.show ul li a {
+  font-size: 20px;
+}
+.sidebar-nav .offcanvas.show {
+  width: 220px;
+}
+.sidebar-nav .offcanvas.show ul li a span.item-text {
+  display: inline-block;
+}
+.sidebar-nav .offcanvas.show ul li a span {
+  font-size: 18px;
+  transition: 0.5s;
+}
+.sidebar-nav .offcanvas.show ul li a:hover span {
+  padding-left: 10px;
+}
+.sidebar-nav .modal-backdrop.show {
+  opacity: .5;
+  display: none;
+}

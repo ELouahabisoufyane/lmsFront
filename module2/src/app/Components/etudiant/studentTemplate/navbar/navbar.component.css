@@ -1,42 +1,52 @@
-body {
-  background-color: #fbfbfb;
+.sidebar-nav ul li {
+  margin: 10px 0px;
 }
-@media (min-width: 991.98px) {
-  main {
-    padding-left: 240px;
-  }
-}
+nav{
+  background: #E6DADA;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #274046, #E6DADA);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #274046, #E6DADA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-/* Sidebar */
-.sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  padding: 58px 0 0; /* Height of navbar */
-  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-  width: 240px;
-  z-index: 600;
 }
+.sidebar-nav ul li a {
+  font-size: 32px;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 5px 10px;
+  background: #E6DADA;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #274046, #E6DADA);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #274046, #E6DADA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-@media (max-width: 991.98px) {
-  .sidebar {
-    width: auto;
-  }
+  border-radius: 4px;
 }
-.sidebar .active {
-  border-radius: 5px;
-  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+.sidebar-nav .offcanvas {
+  width: auto;
+  top: 60px;
+  background: transparent;
+  border: none;
+  visibility: visible !important;
+  transform: translateX(0%);
 }
-
-.sidebar-sticky {
-  position: relative;
-  top: 0;
-  height: calc(100vh - 48px);
-  padding-top: 0.5rem;
-  overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+.sidebar-nav .offcanvas ul li a span.item-text {
+  display: none;
 }
-.row:hover{
-  background-color: violet;
+.sidebar-nav .offcanvas.show ul li a {
+  font-size: 20px;
+}
+.sidebar-nav .offcanvas.show {
+  width: 220px;
+}
+.sidebar-nav .offcanvas.show ul li a span.item-text {
+  display: inline-block;
+}
+.sidebar-nav .offcanvas.show ul li a span {
+  font-size: 18px;
+  transition: 0.5s;
+}
+.sidebar-nav .offcanvas.show ul li a:hover span {
+  padding-left: 10px;
+}
+.sidebar-nav .modal-backdrop.show {
+  opacity: .5;
+  display: none;
 }

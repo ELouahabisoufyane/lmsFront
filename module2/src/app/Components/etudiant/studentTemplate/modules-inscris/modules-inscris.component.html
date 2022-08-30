@@ -1,84 +1,91 @@
-<div *ngIf="auths.authenticatedUser.selec==false">Vous étes incrit dans aucun Module</div>
-<div class="container mt-3 scroll" *ngIf="auths.authenticatedUser.selec">
+<div *ngIf="auths.authenticatedUser.selec==false" >Vous étes incrit dans aucun Module</div>
+<div class="container mt-5 scroll" *ngIf="auths.authenticatedUser.selec" >
   <div class="to-top"  [ngClass]="{ 'show-scrollTop': windowScrolled }">
 
     <button class="btn btn-danger rounded-circle" (click)="scrollToTop()"> <i class="bi bi-arrow-up-circle-fill"></i></button>
 
   </div>
+<div class="row">
+  <div class="col-xl-9">
+    <div class="card mt-3">
+      <div class="card-header a">Modules inscrit</div>
+      <div class="card-body">
+        <div class="container">
+          <mat-tab-group mat-align-tabs="center">
+            <mat-tab *ngFor="let n of niveaux" label="{{n.titre}}">
+              <div class="container mt-3" *ngFor="let s of n.semestres">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="row justify-content-between">
+                      <div class="col"> <label class="text-danger">{{s.titre}} :</label> </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div >
+                    <div *ngFor="let m of s.modules" >
+                      <mat-accordion>
 
-<div class="card">
-  <div class="card-header a">Mes infos personel:</div>
-  <div class="card-body">
-    <ul class="list-group">
-      <li  class="list-group-item"> <label class="text-xl-start">Username:<span class="text-danger font-weight-bold"> {{this.etudiant.username}}</span></label></li>
-      <li class="list-group-item"><label>Année Universitaire:<span class="text-danger font-weight-bold">{{this.promotion.anneeUniv}}</span></label></li>
-      <li class="list-group-item"><label>inscrit en <span class="text-danger font-weight-bold"> {{this.filiere.diplome.typeDiplome}}  {{this.filiere.titre}}</span></label> </li>
-    </ul>
+                        <mat-expansion-panel hideToggle class="mt-2">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              {{m.titre}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                              <div *ngIf="m.professeur" >Responsable :{{m.professeur.username }}</div>
+                              <div *ngIf="!m.professeur" >Responsable :pas d'enseignant</div>
+
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <div>
+                            <table class="table">
+                              <thead>
+                              <tr>
+                                <th colspan="10">Element de Module</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr  *ngFor="let e of m.elements">
+                                <td colspan="4">{{e.name}}</td>
+                                <td> <button class="btn btn-warning" routerLink="/student/detailelement/{{e.id}}">Consulter</button></td>
+                              </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3 mt-3">
+    <div class="card">
+      <div class="card-header a">Mes infos personel:</div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li  class="list-group-item"> <label class="text-xl-start">Username:<span class="text-danger font-weight-bold"> {{this.etudiant.username}}</span></label></li>
+          <li class="list-group-item"><label>Année Universitaire:<span class="text-danger font-weight-bold">{{this.promotion.anneeUniv}}</span></label></li>
+          <li class="list-group-item"><label>inscrit en <span class="text-danger font-weight-bold"> {{this.filiere.diplome.typeDiplome}}  {{this.filiere.titre}}</span></label> </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 
-  <div class="card mt-3">
-    <div class="card-header a">Modules inscrit</div>
-    <div class="card-body">
-      <div class="container">
-        <mat-tab-group mat-align-tabs="center">
-          <mat-tab *ngFor="let n of niveaux" label="{{n.titre}}">
-            <div class="container mt-3" *ngFor="let s of n.semestres">
-              <div class="card">
-                <div class="card-header">
-                  <div class="row justify-content-between">
-                    <div class="col"> <label class="text-danger">{{s.titre}} :</label> </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <div >
-                  <div *ngFor="let m of s.modules" >
-                    <mat-accordion>
-
-                      <mat-expansion-panel hideToggle class="mt-2">
-                        <mat-expansion-panel-header>
-                          <mat-panel-title>
-                            {{m.titre}}
-                          </mat-panel-title>
-                          <mat-panel-description>
-                            <div *ngIf="m.professeur" >Responsable :{{m.professeur.username }}</div>
-                            <div *ngIf="!m.professeur" >Responsable :pas d'enseignant</div>
-
-                          </mat-panel-description>
-                        </mat-expansion-panel-header>
-                        <div>
-                          <table class="table">
-                            <thead>
-                            <tr>
-                              <th colspan="10">Element de Module</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr  *ngFor="let e of m.elements">
-                              <td colspan="4">{{e.name}}</td>
-                              <td> <button class="btn btn-warning" routerLink="/teacher/detailelement/{{e.id}}">Consulter</button></td>
-                            </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </mat-expansion-panel>
-                    </mat-accordion>
-
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </mat-tab>
-        </mat-tab-group>
-      </div>
 
 
-
-    </div>
-  </div>
 </div>
 

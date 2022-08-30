@@ -1,20 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-info">
-  <div class="container-fluid">
-
-
-      <ul class="navbar-nav">
-        <li>
-          <a class="nav-link">
-            Bonjour ! {{auths.authenticatedUser?.username}}
-          </a>
-        </li>
-        <li>
-                <span class="btn nav-link" (click)="handlelogout()">
-                    <i class="bi bi-box-arrow-right"></i>
-                </span>
-        </li>
-      </ul>
+<div class="sidebar-nav">
+  <nav class=" navbar  navbar navbar-light fixed-top" style="background-color:#ff9800;">
+    <div class="container">
+      <!-- Mobile Menu Toggle Button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="btn-group">
+        <a href="#" class="dropdown-toggle text-white text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 2rem;">
+          <span class="usericon"><i class="bi bi-person-circle" ></i></span>
+          <span class="textnone">{{this.auths.authenticatedUser.username}}</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><button class="dropdown-item" type="button"><i class="bi bi-lock-fill"></i> Change Password</button></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><button class="dropdown-item" type="button" (click)="auths.logout()"><i class="bi bi-box-arrow-right"></i> Sign out</button></li>
+        </ul>
+      </div>
+      <!-- Menus List -->
+      <div class="offcanvas offcanvas-start show" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-body">
+          <ul class="navbar-nav">
+            <li><a href="#"><i class="bi bi-calendar3"></i> <span class="item-text">Work Diary</span></a></li>
+            <li><a href="#"><i class="bi bi-pencil-square"></i> <span class="item-text">Applications</span></a></li>
+            <li><a href="#"><i class="bi bi-people"></i> <span class="item-text">Client Manager</span></a></li>
+            <li><a href="#"><i class="bi bi-book"></i> <span class="item-text">Bookings</span></a></li>
+            <li><a href="#"><i class="bi bi-person-check"></i> <span class="item-text">Candidates</span></a></li>
+            <li><a href="#"><i class="bi bi-envelope"></i> <span class="item-text">Email</span></a></li>
+            <li><a href="#"><i class="bi bi-graph-up"></i> <span class="item-text">Reports</span></a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-
-</nav>
-<router-outlet></router-outlet>
+  </nav>
+</div>
+<router-outlet ></router-outlet>

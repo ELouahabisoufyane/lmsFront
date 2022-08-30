@@ -80,6 +80,7 @@ const routes: Routes = [
   ]},
   {path: "student",component:NavbarComponent,canActivate:[AuthenticationGuard],children:[
       {path: "moduleinscrit",component:ModulesInscrisComponent},
+      {path: "detailelement/:id",component:DetailElementModuleComponent}
 
     ]},
   {path: "teacher",component:TeacherComponent,canActivate:[AuthenticationGuard],children:[
