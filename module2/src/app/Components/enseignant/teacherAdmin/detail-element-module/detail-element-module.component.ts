@@ -11,6 +11,7 @@ import {Observable} from "rxjs";
 import {Teacher} from "../../../../Models/teacher";
 import {Element} from "../../../../Models/Element";
 import {Student} from "../../../../Models/student";
+import {AuthentificationserviceService} from "../../../../services/authentificationservice.service";
 @Component({
   selector: 'app-detail-element-module',
   templateUrl: './detail-element-module.component.html',
@@ -39,7 +40,7 @@ export class DetailElementModuleComponent implements OnInit {
   prof: Teacher;
   element:Element;
   etudaints: Student[];
-  constructor(private http: HttpClient, private ro: ActivatedRoute, private fb: FormBuilder, private as: AnnonceService, private axeS: AxeService, private EleService: ElementService, private uploadService: FileUploadService) {
+  constructor(private http: HttpClient, private ro: ActivatedRoute, private fb: FormBuilder, private as: AnnonceService, private axeS: AxeService, private EleService: ElementService, private uploadService: FileUploadService,private auth:AuthentificationserviceService) {
   }
 
   ngOnInit(): void {
@@ -244,5 +245,10 @@ export class DetailElementModuleComponent implements OnInit {
       }
     })
 
+  }
+  isTeacher():boolean{
+    if(this.auth.hasRole("Prof"))
+      return true;
+    return false;
   }
 }

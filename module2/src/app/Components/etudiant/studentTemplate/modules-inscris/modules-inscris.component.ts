@@ -33,6 +33,10 @@ export class ModulesInscrisComponent implements OnInit {
           this.ps.getNiveaux(this.promotion.id).subscribe({
             next:(data)=>{
               this.niveaux=data;
+              console.log(this.niveaux);
+              this.niveaux.sort((a,b)=>a.level>b.level?1:-1);
+              console.log(this.niveaux);
+              this.niveaux.forEach((a)=>{a.semestres.sort((a,b)=>a.indece>b.indece?1:-1)});
             }
           });
           this.ps.getFiliere(this.promotion.id).subscribe({

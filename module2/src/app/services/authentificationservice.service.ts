@@ -23,28 +23,22 @@ export class AuthentificationserviceService {
     return this.http.post<User>(this.baseUrl+"/login",user);
 
   }
-
   authenticateUser(user:User){
     this.authenticatedUser=user;
     localStorage.setItem("user",JSON.stringify({"username":user.username,"roles":user.roles}));
 
   }
-
   hasRole(role:string):boolean{
     for (let index = 0; index < this.authenticatedUser.roles.length; index++) {
       if (this.authenticatedUser.roles[index].role==role) {
         return true;
       }
-
     }
     return false;
   }
-
-
   isAuthenticated(){
     return this.authenticatedUser!=undefined;
   }
-
   logout(){
     localStorage.removeItem("user");
     this.router.navigateByUrl("/index");
