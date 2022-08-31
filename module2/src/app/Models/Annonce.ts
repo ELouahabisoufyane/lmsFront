@@ -1,5 +1,8 @@
-export interface Annonce{
+import {User} from "./User";
+
+export class Annonce{
   id:number;
   date:string;
-  content:string;
+  contentHtml:string;
+  creator:User;
 }

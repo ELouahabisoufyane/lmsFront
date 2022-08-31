@@ -12,6 +12,7 @@ import {Teacher} from "../../../../Models/teacher";
 import {Element} from "../../../../Models/Element";
 import {Student} from "../../../../Models/student";
 import {AuthentificationserviceService} from "../../../../services/authentificationservice.service";
+import {Annonce} from "../../../../Models/Annonce";
 @Component({
   selector: 'app-detail-element-module',
   templateUrl: './detail-element-module.component.html',
@@ -25,7 +26,8 @@ export class DetailElementModuleComponent implements OnInit {
   editorContent: any;
   content: any;
   pub: boolean = false;
-  annonces: Array<any> = [];
+  annonces: Array<Annonce> = [];
+  annonce:Annonce=new Annonce();
   Theme: Axe;
   addThemeForm: FormGroup;
   Themes: Axe[];
@@ -40,12 +42,17 @@ export class DetailElementModuleComponent implements OnInit {
   prof: Teacher;
   element:Element;
   etudaints: Student[];
-  constructor(private http: HttpClient, private ro: ActivatedRoute, private fb: FormBuilder, private as: AnnonceService, private axeS: AxeService, private EleService: ElementService, private uploadService: FileUploadService,private auth:AuthentificationserviceService) {
+  constructor(private annonceS:AnnonceService,private http: HttpClient, private ro: ActivatedRoute, private fb: FormBuilder, private as: AnnonceService, private axeS: AxeService, private EleService: ElementService, private uploadService: FileUploadService,private auth:AuthentificationserviceService) {
   }
 
   ngOnInit(): void {
-
     this.elementid = this.ro.snapshot.params['id'];
+    this.annonceS.getAllAnnonce(this.elementid).subscribe((data)=>{
+      this.annonces=data;
+      console.log("hi");
+      console.log(this.annonces);
+      console.log("hi");
+    })
     this.EleService.getProf(this.elementid).subscribe({
       next:(data)=>{
         this.prof=data;
@@ -113,10 +120,12 @@ export class DetailElementModuleComponent implements OnInit {
   publier() {
     this.pub = true;
     this.handleAfficher();
-
-    this.annonces.push(this.editorContent);
-    this.editorContent = null;
-
+    this.annonce.contentHtml=this.editorContent.toString();
+    this.annonceS.addAnnonce(this.annonce,this.elementid,this.auth.authenticatedUser.id).subscribe((data)=>{
+      console.log(data);
+      this.editorContent = null;
+      this.ngOnInit();
+    })
   }
 
   handleaddTheme() {
@@ -204,8 +213,6 @@ export class DetailElementModuleComponent implements OnInit {
   getoldTheme(t: Axe) {
     this.oldTheme=t;
     this.ngOnInit();
-
-
   }
 
   handleeditTheme() {

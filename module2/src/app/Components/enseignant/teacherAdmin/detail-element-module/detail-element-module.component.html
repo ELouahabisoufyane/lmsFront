@@ -19,9 +19,18 @@
       </div>
         <div *ngIf="annonces.length!=0">
         <div class="card m-5" *ngFor="let a of annonces" >
-          <div class="card-header"> Annonce :</div>
+          <div class="card-header">
+            <div class="row">
+              <div class="col-10">
+                {{a.creator.username}}
+              </div>
+              <div class="col-2">
+                {{a.date}}
+              </div>
+            </div>
+          </div>
           <div class="card-body">
-            <div [froalaView]="a"> </div>
+            <div [froalaView]="a.contentHtml"> </div>
           </div>
         </div>
       </div>
